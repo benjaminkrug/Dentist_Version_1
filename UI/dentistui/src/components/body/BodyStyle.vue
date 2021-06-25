@@ -1,8 +1,7 @@
 <template>
   <div class="BodyStyle">
     Body
-    <button @click="backendTest"> Daten aus DB laden</button>
-    {{ test }}
+    <router-view></router-view>
   </div>
 </template>
 
@@ -12,15 +11,6 @@ export default {
     return {
       test: 'test'
     }
-  },
-  methods: {
-    async backendTest() {
-        this.test = await this.axios
-          .get('https://localhost:5001/User')
-          .then(response => {
-            return response.data
-          })
-    },
   }
 }
 </script>
