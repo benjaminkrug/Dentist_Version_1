@@ -1,0 +1,1 @@
+﻿Select "Id" From "User" Where "First_Name" = 'Benjamin';
