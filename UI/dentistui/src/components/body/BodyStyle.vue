@@ -1,6 +1,5 @@
 <template>
   <div class="BodyStyle">
-    Body
     <router-view></router-view>
   </div>
 </template>
