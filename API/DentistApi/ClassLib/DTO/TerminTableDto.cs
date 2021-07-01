@@ -13,5 +13,6 @@
         public string Last_Name { get; set; }
         public DateTime Birthday { get; set; }
         public string Arzt { get; set; }
+        public string Status { get; set; }
     }
 }

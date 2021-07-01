@@ -1,6 +1,5 @@
 <template>
   <div class="TagesbehandlungenStyle">
-    Tagesbehandlungen
     <router-view></router-view>
   </div>
 </template>

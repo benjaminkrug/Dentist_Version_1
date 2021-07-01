@@ -11,8 +11,14 @@
         </div>
       </div>
       <div v-for="hour in list" :key="hour.hour">
-        <div class="card" v-for="mins in hour.mins" :key="mins.mins">
-          <div>
+        <div
+          class="card"
+          v-for="mins in hour.mins"
+          :key="mins.min"
+        >
+          <div
+            :style="aktuellHour == hour.hour && aktuellMinuteMin == mins.min? 'background-color: grey;' : ''"
+          >
             {{hour.hour}}.{{mins.min}}
           </div>
           <div>
@@ -31,6 +37,8 @@
 
 <script>
 
+import { mapState, mapActions } from 'vuex'
+
 import KalenderCard from './KalenderCard.vue'
 
 export default {
@@ -41,8 +49,8 @@ export default {
   data() {
     return {
       list: [],
-      aerzte: [],
-      termine: []
+      cardsPerHour: 3,
+      now: 0
     }
   },
 
@@ -52,15 +60,14 @@ export default {
     .then(() => {
         const startHour = 9
         const closeHour = 18
-        const cardsPerHour = 3
         for (var h = startHour; h <= closeHour; h++) {
           const minList = []
-          for (var m = 0; m < cardsPerHour; m++){
-            var stamp = m * (60 / cardsPerHour)
+          for (var m = 0; m < this.cardsPerHour; m++){
+            var stamp = m * (60 / this.cardsPerHour)
             const tasks = this.termine.filter(task =>
               task.terminDate.getHours() == h
               && task.terminDate.getMinutes() > stamp
-              && task.terminDate.getMinutes() <= stamp + (60 / cardsPerHour))
+              && task.terminDate.getMinutes() <= stamp + (60 / this.cardsPerHour))
             var groupedTasks = {}
             if(tasks.length > 0){
 
@@ -77,29 +84,39 @@ export default {
           }
           this.list.push({hour: h, mins:minList})
         }
-    });
+    })
+    setInterval(this.updateNow.bind(this),1000);
   },
   methods: {
-    async loadAllTermine() {
-      this.termine = await this.axios
-        .get('https://localhost:5001/getAllTermine')
-        .then(response => {
-          return response.data.map(x => {
-            return {...x, terminDate: new Date(x.terminDate), birthday: new Date(x.birthday)}
-          })
-        })
-    },
-    async loadAllAerzte() {
-      this.aerzte = await this.axios
-        .get('https://localhost:5001/getAllAerzte')
-        .then(response => {
-            return response.data
-          })
+    ...mapActions([
+      'loadAllTermine',
+      'loadAllAerzte',
+    ]),
+    updateNow() {
+      this.now = new Date().getMinutes()
     }
   },
   computed:{
+    ...mapState([
+      'termine',
+      'aerzte'
+    ]),
     headerlist(){
       return this.aerzte.map(x => x.last_Name)
+    },
+    aktuellHour() {
+      return new Date().getHours();
+    },
+    aktuellMinute() {
+      return new Date().getMinutes();
+    },
+    aktuellMinuteMin() {
+      for(var x = 0; x <= this.cardsPerHour; x++){
+        if(x * (60 / this.cardsPerHour) > this.now){
+          return x* (60 / this.cardsPerHour)- (60 / this.cardsPerHour);
+        }
+      }
+      return x* (60 / this.cardsPerHour) - (60 / this.cardsPerHour);
     }
   }
 }
@@ -114,6 +131,7 @@ export default {
   display: grid;
   grid-template-columns: 10% 1% repeat(2, 1fr);
   text-align: center;
+
 
 }
 .header{

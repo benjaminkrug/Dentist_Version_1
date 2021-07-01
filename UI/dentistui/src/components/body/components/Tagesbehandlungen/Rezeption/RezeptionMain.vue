@@ -1,15 +1,15 @@
 <template>
   <div class="Fill">
-    Rezeption
+    <h1>Rezeption</h1>
     <div class="RezeptionStyle">
       <div class="calender box">
         <kalender />
       </div>
       <div class="wartezimmer box">
-        Wartezimmer
+        <wartezimmer />
       </div>
       <div class="behandlung box">
-        In Behandlung
+        <behandlung />
       </div>
     </div>
   </div>
@@ -18,10 +18,15 @@
 <script>
 
 import kalender from './Kalender/KalenderMain.vue'
+import wartezimmer from './Wartezimmer/WartezimmerMain.vue'
+import behandlung from './Behandlung/BehandlungMain.vue'
+
 export default {
   name: "Rezeption",
   components:{
-    kalender
+    kalender,
+    wartezimmer,
+    behandlung
   },
 }
 </script>

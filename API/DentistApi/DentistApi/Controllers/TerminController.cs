@@ -35,11 +35,16 @@
                 var user = users.Find(u => u.Id == t.UserId);
                 var arzt = aerzte.Find(a => a.Id == t.ArztId);
                 var split = t.Time.Split(':');
-                var time = t.Datum + new TimeSpan(int.Parse(split[0]), int.Parse(split[0]), int.Parse(split[0]));
-                return new TermineTableDto() { Id = t.Id, Arzt = arzt.Last_Name, TerminDate = time, First_Name = user.First_Name, Last_Name = user.Last_Name, Birthday = user.Birthday };
+                var time = t.Datum + new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]));
+                return new TermineTableDto() { Id = t.Id, Status = t.Status, Arzt = arzt.Last_Name, TerminDate = time, First_Name = user.First_Name, Last_Name = user.Last_Name, Birthday = user.Birthday };
             }).ToList();
-            Console.WriteLine(result);
             return result;
+        }
+        [HttpPost("setTerminStatusById")]
+        public void SetTerminStatusById([FromBody] TermineTableDto status)
+        {
+            _dp.Insert<TerminDbModel>("SetTerminStatusById.sql", new DynamicParameters(new { id = status.Id, status= status.Status }), CommandType.Text);
+            return;
         }
 
     }

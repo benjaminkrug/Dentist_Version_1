@@ -1,9 +1,7 @@
 <template>
   <div class="KalenderCardStyle" >
-    <div v-if="!cardOpen" class="ClosedCardStyle" @click="toggleCard">
-      <div class="StatusColor" :style="'background-color:' + CardColor">
-      </div>
-      {{infos.first_Name[0]}}.{{infos.last_Name}}
+    <div v-if="!cardOpen" @click="toggleCard">
+      {{infos.first_Name}} {{infos.last_Name}}
     </div>
     <div v-if="cardOpen" class="Card">
       <div class="CardStyle" @click="toggleCard">
@@ -19,15 +17,9 @@
         <div>
          {{infos.birthday.getDate() }}.{{infos.birthday.getMonth() +1 }}.{{infos.birthday.getFullYear()}}
         </div>
-        <div>
-          Status:
-        </div>
-        <div>
-          {{infos.status}}
-        </div>
       </div>
       <div class="Actions">
-        <b-icon icon="arrow90deg-right" variant="success" @click="moveWartezimmer"></b-icon>
+        <b-icon icon="arrow90deg-right" variant="success" @click="moveBehandlung"></b-icon>
         <b-icon icon="info-circle"></b-icon>
         <b-icon icon="x-circle" variant="danger"></b-icon>
       </div>
@@ -37,12 +29,10 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
-  name:"KalenderCard",
-  components: {
-  },
+  name:"WartezimmerCard",
   props: {
     infos: {}
   },
@@ -51,36 +41,15 @@ export default {
       cardOpen: false
     }
   },
-  computed: {
-    ...mapState({
-    }),
-    CardColor(){
-      switch(this.infos.status){
-        case 'wartezimmer':{
-          return 'yellow'
-        }
-        case 'inBehandlung':{
-          return 'red'
-        }
-        case 'abgeschlossen':{
-          return 'green'
-        }
-        case 'ausstehend':{
-          return 'grey'
-        }
-      }
-      return 'red'
-    }
-  },
   methods:{
-    ...mapActions([
-      'setTerminStatusToWartezimmer',
+    ...mapMutations([
+      'setTerminStatusToInBehandlung',
     ]),
     toggleCard(){
       this.cardOpen = !this.cardOpen
     },
-    moveWartezimmer(){
-      this.setTerminStatusToWartezimmer(this.infos)
+    moveBehandlung(){
+      this.setTerminStatusToInBehandlung(this.infos)
     }
   }
 }
@@ -88,11 +57,10 @@ export default {
 
 <style scoped>
 .KalenderCardStyle{
-
-}
-.Card{
   border-style: groove;
   border-radius: 8px;
+}
+.Card{
 }
 .CardStyle{
   display: grid;
@@ -101,12 +69,6 @@ export default {
 }
 .CardStyle > div{
   margin: 5px;
-}
-.ClosedCardStyle{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
 }
 .Actions{
   grid-column: 1/ span 2;
@@ -117,10 +79,5 @@ export default {
 .Actions > svg{
   margin-right: 10px;
   margin-left: 10px;
-}
-.StatusColor{
-  width: 4px;
-  height: 14px;
-  margin-right: 5px;
 }
 </style>
