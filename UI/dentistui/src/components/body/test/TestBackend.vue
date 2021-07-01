@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="backendTest"> Daten aus DB laden</button>
+    <button @click="backendTerminTest"> Termin Daten aus DB laden</button>
     {{ test }}
   </div>
 </template>
@@ -20,6 +21,13 @@ export default {
             return response.data
           })
     },
+      async backendTerminTest() {
+          this.test = await this.axios
+            .get('https://localhost:5001/getAllTermine')
+            .then(response => {
+              return response.data
+            })
+      },
   }
 }
 </script>

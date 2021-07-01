@@ -5,6 +5,7 @@
     using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
+    using ClassLib.DBModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Npgsql;
@@ -29,8 +30,8 @@
             return g;
         }
 
-        [HttpGet("User")]
-        public async Task<Guid> User()
+        [HttpGet("getUser")]
+        public async Task<Guid> getUser()
         {
             var g = _dp.Get<Guid>("getUser.sql", null, CommandType.Text);
 
@@ -38,10 +39,22 @@
 
             return g;
         }
+
+        [HttpGet("getAllUser")]
+        public async Task<List<UserDBModel>> GetAllUser()
+        {
+            var g = _dp.GetAll<UserDBModel>("getAllUser.sql", null, CommandType.Text);
+
+            Console.WriteLine(g);
+
+            return g;
+        }
+
         [HttpGet("Test")]
         public async Task<string> Test1()
         {
             return "hallo";
         }
+
     }
 }

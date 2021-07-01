@@ -1,0 +1,1 @@
+﻿Select * From "Arzt" Where "Id"=ANY(@ids);

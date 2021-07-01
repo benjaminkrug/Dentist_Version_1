@@ -1,0 +1,1 @@
+﻿Select * From "User" Where "Id"= @id;

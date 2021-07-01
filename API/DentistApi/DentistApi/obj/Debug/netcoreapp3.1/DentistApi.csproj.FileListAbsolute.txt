@@ -41,3 +41,5 @@ D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.pdb
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.genruntimeconfig.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.csproj.AssemblyReference.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.pdb

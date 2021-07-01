@@ -307,6 +307,16 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "ClassLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/ClassLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClassLib.dll": {}
+        }
       }
     }
   },
@@ -1021,10 +1031,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ClassLib/1.0.0": {
+      "type": "project",
+      "path": "../ClassLib/ClassLib.csproj",
+      "msbuildProject": "../ClassLib/ClassLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "ClassLib >= 1.0.0",
       "Dapper >= 2.0.35",
       "Microsoft.EntityFrameworkCore >= 3.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.0.0",
@@ -1062,7 +1078,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\ClassLib\\ClassLib.csproj": {
+              "projectPath": "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\ClassLib\\ClassLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -12,6 +12,25 @@ const router = new Router({
       path: '', component: () => import('../components/body/components/BodyMain.vue')
     },
     {
+      path: '/Tagesbehandlungen',
+      component: () => import('../components/body/components/Tagesbehandlungen/TagesbehandlungenMain.vue'),
+      children: [
+        {
+          // UserProfile will be rendered inside User's <router-view>
+          // when /user/:id/profile is matched
+          path: 'Behandlungsraum',
+          component: () => import('../components/body/components/Tagesbehandlungen/Behandlungsraum/BehandlungsraumMain.vue')
+        },
+        {
+          // UserPosts will be rendered inside User's <router-view>
+          // when /user/:id/posts is matched
+          path: 'Rezeption',
+          component: () => import('../components/body/components/Tagesbehandlungen/Rezeption/RezeptionMain.vue')
+        }
+      ]
+
+    },
+    {
       path: '/Patient', component: () => import('../components/body/components/Patient/PatientMain.vue')
     },
     {

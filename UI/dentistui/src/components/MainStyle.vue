@@ -23,6 +23,7 @@ export default {
   justify: center;
   flex-direction: column;
   position: fixed;
+  margin: auto;
   top: 0;
   right: 0;
   bottom: 0;

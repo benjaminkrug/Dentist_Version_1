@@ -1,0 +1,9 @@
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\bin\Debug\netcoreapp3.1\ClassLib.deps.json
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\bin\Debug\netcoreapp3.1\ClassLib.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\bin\Debug\netcoreapp3.1\ClassLib.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.csproj.AssemblyReference.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.AssemblyInfoInputs.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.AssemblyInfo.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.csproj.CoreCompileInputs.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\ClassLib\obj\Debug\netcoreapp3.1\ClassLib.pdb

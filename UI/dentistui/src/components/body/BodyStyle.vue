@@ -16,6 +16,6 @@ export default {
 
 <style scoped>
 .BodyStyle{
-
+  width: 100%;
 }
 </style>
