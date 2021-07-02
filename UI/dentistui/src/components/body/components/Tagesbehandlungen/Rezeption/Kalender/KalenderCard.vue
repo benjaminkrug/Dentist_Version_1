@@ -3,7 +3,7 @@
     <div v-if="!cardOpen" class="ClosedCardStyle" @click="toggleCard">
       <div class="StatusColor" :style="'background-color:' + CardColor">
       </div>
-      {{infos.first_Name[0]}}.{{infos.last_Name}}
+      {{infos.first_Name[0]}}.{{infos.last_Name}} ({{ infos.typ_short }})
     </div>
     <div v-if="cardOpen" class="Card">
       <div class="CardStyle" @click="toggleCard">
@@ -20,16 +20,16 @@
          {{infos.birthday.getDate() }}.{{infos.birthday.getMonth() +1 }}.{{infos.birthday.getFullYear()}}
         </div>
         <div>
-          Status:
+          Status: {{infos.status}}
         </div>
         <div>
-          {{infos.status}}
+          {{infos.typ_long}}
         </div>
       </div>
       <div class="Actions">
-        <b-icon icon="arrow90deg-right" variant="success" @click="moveWartezimmer"></b-icon>
-        <b-icon icon="info-circle"></b-icon>
-        <b-icon icon="x-circle" variant="danger"></b-icon>
+        <b-icon v-if="infos.status == 'ausstehend'" icon="arrow90deg-right" variant="success" @click="moveWartezimmer"></b-icon>
+        <b-icon icon="info-circle" @click="showPatient(infos.userId)"></b-icon>
+        <b-icon v-if="infos.status == 'ausstehend'" icon="x-circle" variant="danger"></b-icon>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name:"KalenderCard",
@@ -73,6 +73,9 @@ export default {
     }
   },
   methods:{
+    ...mapMutations([
+      'setSelectedPatientId',
+    ]),
     ...mapActions([
       'setTerminStatusToWartezimmer',
     ]),
@@ -80,7 +83,12 @@ export default {
       this.cardOpen = !this.cardOpen
     },
     moveWartezimmer(){
+      this.cardOpen = false;
       this.setTerminStatusToWartezimmer(this.infos)
+    },
+    showPatient(id){
+      this.setSelectedPatientId(id)
+      this.$router.push('/Patient')
     }
   }
 }

@@ -19,8 +19,15 @@
         </div>
       </div>
       <div class="Actions">
-        <b-icon icon="arrow90deg-right" variant="success" @click="moveBehandlung"></b-icon>
-        <b-icon icon="info-circle"></b-icon>
+        <b-dropdown variant="link" no-caret>
+          <template #button-content class="dropdown-button">
+            <b-icon icon="arrow90deg-right" variant="success" ></b-icon>
+          </template>
+          <b-dropdown-item @click="moveBehandlung('1')">Behandlungsraum 1</b-dropdown-item>
+          <b-dropdown-item @click="moveBehandlung('2')">Behandlungsraum 2</b-dropdown-item>
+          <b-dropdown-item @click="moveBehandlung('3')">Behandlungsraum 3</b-dropdown-item>
+        </b-dropdown>
+        <b-icon icon="info-circle" @click="showPatient(infos.userId)"></b-icon>
         <b-icon icon="x-circle" variant="danger"></b-icon>
       </div>
     </div>
@@ -29,7 +36,7 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name:"WartezimmerCard",
@@ -43,13 +50,21 @@ export default {
   },
   methods:{
     ...mapMutations([
+      'setSelectedPatientId',
+    ]),
+    ...mapActions([
       'setTerminStatusToInBehandlung',
     ]),
     toggleCard(){
       this.cardOpen = !this.cardOpen
     },
-    moveBehandlung(){
+    moveBehandlung(raum){
+      this.infos.raum = raum;
       this.setTerminStatusToInBehandlung(this.infos)
+    },
+    showPatient(id){
+      this.setSelectedPatientId(id)
+      this.$router.push('/Patient')
     }
   }
 }
@@ -79,5 +94,9 @@ export default {
 .Actions > svg{
   margin-right: 10px;
   margin-left: 10px;
+}
+svg{
+  font-size: 100%;
+  vertical-align: text-top;
 }
 </style>

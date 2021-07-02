@@ -8,7 +8,8 @@ export default new Vuex.Store({
   namespaced: true,
   state: {
     count: 0,
-    kunden:[],
+    patients:[],
+    selectedPatientId: null,
     termine:[],
     aerzte:[],
 
@@ -23,14 +24,17 @@ export default new Vuex.Store({
     setAerzte(state, t){
       state.aerzte= t
     },
-    setTerminStatusToWartezimmer(state, termin){
-      state.termine.find(t => t.id == termin.id).status = 'wartezimmer'
+    SetTerminStatusById(state, termin){
+      state.termine.find(t => t.id == termin.Id).status = termin.Status
     },
-    setTerminStatusToInBehandlung(state, termin){
-      state.termine.find(t => t.id == termin.id).status = 'inBehandlung'
+    SetBehandlungsRaumById(state, termin){
+      state.termine.find(t => t.id == termin.Id).raum = termin.Raum
     },
-    setTerminStatusToAbgeschlossen(state, termin){
-      state.termine.find(t => t.id == termin.id).status = 'abgeschlossen'
+    setSelectedPatientId(state, id){
+      state.selectedPatientId = id
+    },
+    setAllPatients(state, p){
+      state.patients = p
     }
   },
   actions: {
@@ -50,19 +54,39 @@ export default new Vuex.Store({
             return response.data
           }))
     },
-    async setTerminStatusToWartezimmer({ commit },termin){
+    async SetTerminStatusById(state, t){
       await axios
         .post('https://localhost:5001/setTerminStatusById',
-          {Id: termin.id, Status: 'wartezimmer'})
-        .then(()=> commit('setTerminStatusToWartezimmer', termin))
-
+          {Id: t.Id, Status: t.Status})
     },
-    setTerminStatusToInBehandlung({ commit },termin){
-      commit('setTerminStatusToInBehandlung', termin)
+    async SetTerminStatusUndBehandlungsRaumById(state, t){
+      await axios
+        .post('https://localhost:5001/setTerminStatusUndBehandlungsRaumById',
+          {Id: t.Id, Status: t.Status, Raum: t.Raum})
     },
-    setTerminStatusToAbgeschlossen({ commit },termin){
-      commit('setTerminStatusToAbgeschlossen', termin)
+    async setTerminStatusToWartezimmer({ commit, dispatch },termin){
+      var newTermin = {Id: termin.id, Status: 'wartezimmer'}
+      dispatch('SetTerminStatusById', newTermin)
+        .then(()=> commit('SetTerminStatusById', newTermin))
     },
+    async setTerminStatusToInBehandlung({ commit, dispatch },termin){
+      var newTermin = {Id: termin.id, Status: 'inBehandlung', Raum: termin.raum}
+      dispatch('SetTerminStatusUndBehandlungsRaumById', newTermin)
+        .then(()=> commit('SetTerminStatusById', newTermin))
+        .then(()=> commit('SetBehandlungsRaumById', newTermin))
+    },
+    async setTerminStatusToAbgeschlossen({ commit, dispatch },termin){
+      var newTermin = {Id: termin.id, Status: 'abgeschlossen'}
+      dispatch('SetTerminStatusById', newTermin)
+        .then(()=> commit('SetTerminStatusById', newTermin))
+    },
+    async loadAllPatients({ commit }) {
+      commit('setAllPatients', await axios
+        .get('https://localhost:5001/getAllUser')
+        .then(response => {
+          return response.data//.concat(response.data).concat(response.data).concat(response.data).concat(response.data)
+        }))
+      }
   },
   getters:{
     kundenInWartezimmer: state => {
@@ -70,6 +94,9 @@ export default new Vuex.Store({
     },
     kundenInBehandlung: state => {
       return state.termine.filter(termin => termin.status === 'inBehandlung')
+    },
+    selectedPatient: state => {
+      return state.patients.filter(p => p.id === state.selectedPatientId)[0]
     }
   }
 })

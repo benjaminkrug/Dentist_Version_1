@@ -12,6 +12,8 @@
         public Guid UserId { get; set; }
         public Guid ArztId { get; set; }
         public string Status { get; set; }
+        public string Typ { get; set; }
+        public string Raum { get; set; }
 
     }
 }

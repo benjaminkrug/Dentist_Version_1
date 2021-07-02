@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr :class="selectedpatient == patient? 'selected-row' : ''" v-for="patient in shownPatients" :key="patient.Id" v-on:click="selectedpatient = patient">
+            <tr :class="selectedPatientId == patient.id? 'selected-row' : ''" v-for="patient in shownPatients" :key="patient.id" v-on:click="setSelectedPatientId(patient.id)">
               <td>{{ patient.first_Name }}</td>
               <td>{{ patient.last_Name }}</td>
               <td>{{ patient.birthday.split('T')[0] }}</td>
@@ -27,43 +27,46 @@
       </div>
     </div>
     <div>
-      <hr />
-      Ausgewählter Patient
-      <hr />
+      <selected-patient-main/>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from 'vuex'
+
 import SearchInput from '@/components/body/share/input/SearchInput.vue'
+import SelectedPatientMain from './Selected/SelectedPatientMain.vue'
 
 export default {
   name: "PatientMain",
   data() {
     return {
-      allPatients:[],
-      selectedpatient:{},
       searchText:''
     };
   },
   components: {
-    SearchInput
+    SearchInput,
+    SelectedPatientMain
   },
   methods:{
-    async loadAllUser() {
-      this.allPatients = await this.axios
-        .get('https://localhost:5001/getAllUser')
-        .then(response => {
-          return response.data//.concat(response.data).concat(response.data).concat(response.data).concat(response.data)
-        })
-      }
+    ...mapMutations([
+      'setSelectedPatientId',
+    ]),
+    ...mapActions([
+      'loadAllPatients',
+    ]),
   },
   mounted(){
-    this.loadAllUser();
+    this.loadAllPatients();
   },
   computed: {
+    ...mapState([
+      'selectedPatientId',
+      'patients'
+    ]),
     shownPatients(){
-      return this.allPatients?.filter(patient => patient.first_Name.includes(this.searchText)) || []
+      return this.patients?.filter(patient => patient.first_Name.includes(this.searchText)) || []
     }
   }
 }
