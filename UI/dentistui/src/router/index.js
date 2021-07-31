@@ -19,7 +19,8 @@ const router = new Router({
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
           path: 'Behandlungsraum',
-          component: () => import('../components/body/components/Tagesbehandlungen/Behandlungsraum/BehandlungsraumMain.vue')
+          component: () => import('../components/body/components/Tagesbehandlungen/Behandlungsraum/BehandlungsraumMain.vue'),
+          props: true
         },
         {
           // UserPosts will be rendered inside User's <router-view>

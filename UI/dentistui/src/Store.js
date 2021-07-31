@@ -12,6 +12,7 @@ export default new Vuex.Store({
     selectedPatientId: null,
     termine:[],
     aerzte:[],
+    behandlungsData:{}
 
   },
   mutations: {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     },
     setAllPatients(state, p){
       state.patients = p
+    },
+    setPatientToBehandlungsraum(state, behandlungsData){
+      state.behandlungsData = behandlungsData
     }
   },
   actions: {
@@ -86,7 +90,14 @@ export default new Vuex.Store({
         .then(response => {
           return response.data//.concat(response.data).concat(response.data).concat(response.data).concat(response.data)
         }))
-      }
+    },
+    async loadPatientsBehandlungsRaumMain({ commit }) {
+      commit('setPatientToBehandlungsraum', await axios
+        .get('https://localhost:5001/getBehandlungsRaumMain')
+        .then(response => {
+          return response.data.reduce((a,x) => ({...a, [x.userId]: {...x}}), {})
+        }))
+    }
   },
   getters:{
     kundenInWartezimmer: state => {

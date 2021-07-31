@@ -6,7 +6,7 @@
         </div>
         <div>
         </div>
-        <div v-for="name in headerlist" :key="name" >
+        <div v-for="(name, i) in headerlist" :key="name + i" >
           {{ name }}
         </div>
       </div>
@@ -24,8 +24,8 @@
           <div>
             |
           </div>
-          <div v-for="header in headerlist" :key="header">
-            <div v-for="task in mins.groupedTasks[header]" :key="task.last_Name">
+          <div v-for="(header, i) in headerlist" :key="header +  i">
+            <div v-for="(task, i) in mins.groupedTasks[header]" :key="task.last_Name + i">
               <KalenderCard :infos="task" />
             </div>
           </div>

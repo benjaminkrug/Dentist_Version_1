@@ -8,6 +8,9 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './Store'
+import VueKonva from 'vue-konva';
+
+Vue.use(VueKonva);
 
 // Add VuexStore
 Vue.use(Vuex)

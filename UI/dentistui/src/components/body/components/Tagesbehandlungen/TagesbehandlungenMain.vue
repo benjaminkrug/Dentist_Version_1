@@ -5,7 +5,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
+  mounted(){
+    this.loadPatientsBehandlungsRaumMain();
+  },
+  methods:{
+    ...mapActions([
+      'loadPatientsBehandlungsRaumMain',
+    ]),
+  },
 }
 </script>
 
