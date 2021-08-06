@@ -19,22 +19,22 @@
       <zahn-card type='MahlZahn' :zahn-style="style[14].fuellungen" :wurzeln='3' />
       <zahn-card type='WeisheitsZahn' :zahn-style="style[15].fuellungen" :wurzeln='3' />
       <!-- Zeile2 -->
-      <zahn-card type='WeisheitsZahn' :zahn-style="style[16].fuellungen" :wurzeln='2' />
-      <zahn-card type='MahlZahn' :zahn-style="style[17].fuellungen" :wurzeln='2' />
-      <zahn-card type='MahlZahn' :zahn-style="style[18].fuellungen" :wurzeln='2' />
-      <zahn-card type='VormahlZahn' :zahn-style="style[19].fuellungen" :wurzeln='1' />
-      <zahn-card type='VormahlZahn' :zahn-style="style[20].fuellungen" :wurzeln='1' />
-      <zahn-card type='EckZahn' :zahn-style="style[21].fuellungen" :wurzeln='1' />
-      <zahn-card type='SchneideZahn' :zahn-style="style[22].fuellungen" :wurzeln='1' />
-      <zahn-card type='SchneideZahn' :zahn-style="style[23].fuellungen" :wurzeln='1' />
-      <zahn-card type='SchneideZahn' :zahn-style="style[24].fuellungen" :wurzeln='1' />
-      <zahn-card type='SchneideZahn' :zahn-style="style[25].fuellungen" :wurzeln='1' />
-      <zahn-card type='EckZahn' :zahn-style="style[26].fuellungen" :wurzeln='1' />
-      <zahn-card type='VormahlZahn' :zahn-style="style[27].fuellungen" :wurzeln='1' />
-      <zahn-card type='VormahlZahn' :zahn-style="style[28].fuellungen" :wurzeln='1' />
-      <zahn-card type='MahlZahn' :zahn-style="style[29].fuellungen" :wurzeln='2' />
-      <zahn-card type='MahlZahn' :zahn-style="style[30].fuellungen" :wurzeln='2' />
-      <zahn-card type='WeisheitsZahn' :zahn-style="style[31].fuellungen" :wurzeln='2' />
+      <zahn-card type='WeisheitsZahn' :zahn-style="style[16].fuellungen" :wurzeln='2' isUnterKiefer />
+      <zahn-card type='MahlZahn' :zahn-style="style[17].fuellungen" :wurzeln='2' isUnterKiefer />
+      <zahn-card type='MahlZahn' :zahn-style="style[18].fuellungen" :wurzeln='2' isUnterKiefer />
+      <zahn-card type='VormahlZahn' :zahn-style="style[19].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='VormahlZahn' :zahn-style="style[20].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='EckZahn' :zahn-style="style[21].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='SchneideZahn' :zahn-style="style[22].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='SchneideZahn' :zahn-style="style[23].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='SchneideZahn' :zahn-style="style[24].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='SchneideZahn' :zahn-style="style[25].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='EckZahn' :zahn-style="style[26].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='VormahlZahn' :zahn-style="style[27].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='VormahlZahn' :zahn-style="style[28].fuellungen" :wurzeln='1' isUnterKiefer />
+      <zahn-card type='MahlZahn' :zahn-style="style[29].fuellungen" :wurzeln='2' isUnterKiefer />
+      <zahn-card type='MahlZahn' :zahn-style="style[30].fuellungen" :wurzeln='2' isUnterKiefer />
+      <zahn-card type='WeisheitsZahn' :zahn-style="style[31].fuellungen" :wurzeln='2' isUnterKiefer />
     </div>
   </div>
 </template>

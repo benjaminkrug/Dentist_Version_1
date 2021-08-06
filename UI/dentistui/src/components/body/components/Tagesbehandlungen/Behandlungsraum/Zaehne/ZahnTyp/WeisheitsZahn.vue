@@ -1,13 +1,24 @@
 <template>
-  <div class="WeisheitsZahn" >
-    <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
-    <div />
-    <div class="box mitte-mitte" :style='styleMitteMitte' />
-    <div />
-
-    <div />
-    <div class="unten-mitte" :style='styleUntenMitteMitte' >
-      <spezial-form-round />
+  <div>
+    <div v-if="!isUnterKiefer" class="WeisheitsZahn" :style="styleWeisheitsZahn" >
+      <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
+      <div />
+      <div class="box mitte-mitte" :style='styleMitteMitte' />
+      <div />
+      <div />
+      <div class="unten-mitte" :style='styleUntenMitteMitte' >
+        <spezial-form-round />
+      </div>
+    </div>
+    <div v-else class="WeisheitsZahn" :style="styleWeisheitsZahn" >
+      <div />
+      <div class="unten-mitte" :style='styleUntenMitteMitte' >
+        <spezial-form-round />
+      </div>
+      <div />
+      <div />
+      <div class="box mitte-mitte" :style='styleMitteMitte' />
+      <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
     </div>
   </div>
 </template>
@@ -27,8 +38,17 @@ export default {
       type: Number,
       default: 1
     },
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
+    },
   },
   computed:{
+    styleWeisheitsZahn(){
+      let returnObject = {}
+      returnObject = {gridTemplateRows: this.isUnterKiefer ? '35% 20% 45%' : '35% 20% 45%' }
+      return returnObject;
+    },
     styleObenLinks(){
       let returnObject = {}
       Object.assign(returnObject, this.AddIfIsPosition('oben-links', 'backgroundColor', 'red'));
@@ -97,7 +117,7 @@ export default {
   height: 100%;
   display: grid;
   grid-template-columns: 30% 40% 30%;
-  grid-template-rows: 35% 20% 45%;
+
 }
 .wurzel-selector{
   grid-column-end: span 3;

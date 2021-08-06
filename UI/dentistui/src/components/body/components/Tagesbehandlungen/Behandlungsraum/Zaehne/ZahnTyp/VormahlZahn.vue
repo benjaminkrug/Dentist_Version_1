@@ -1,9 +1,24 @@
 <template>
   <div class="all">
-    <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
-    <div class="box mitte-mitte" />
-    <div class="unten-mitte" >
-      <spezial-form-round class="spezial" />
+    <div v-if="!isUnterKiefer" class="VormahlZahn" :style="styleVormahlZahn" >
+      <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
+      <div />
+      <div class="box mitte-mitte" />
+      <div />
+      <div />
+      <div class="unten-mitte" >
+        <spezial-form-round />
+      </div>
+    </div>
+    <div v-else class="VormahlZahn" :style="styleVormahlZahn" >
+      <div />
+      <div class="unten-mitte" >
+        <spezial-form-round />
+      </div>
+      <div />
+      <div />
+      <div class="box mitte-mitte" />
+      <wurzel-selector class="wurzel-selector pHoch" :wurzeln="wurzeln" isUnterKiefer/>
     </div>
   </div>
 </template>
@@ -18,10 +33,23 @@ export default {
       type: Number,
       default: 1
     },
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
+    },
   },
   components: {
     WurzelSelector,
     SpezialFormRound
+  },
+  computed:{
+    styleVormahlZahn(){
+      let returnObject = {}
+      returnObject = {
+        gridTemplateRows: this.isUnterKiefer ? '35% 20% 45%' : '35% 20% 45%',
+      }
+      return returnObject;
+    },
   }
 
 }
@@ -29,26 +57,19 @@ export default {
 
 <style scoped>
 .all{
+
+}
+.VormahlZahn{
+  padding-bottom: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 35% 20% 45%;
-}
-.VormahlZahnOben{
-  padding-bottom: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
-  display: grid;
-  grid-template-columns: auto 17px 17px 15px;
-  grid-template-rows: 100%;
-}
-.VormahlZahnUnten{
-  padding-bottom: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
-  display: grid;
   grid-template-columns: 30% 40% 30%;
-  grid-template-rows:  31% 69%;
+}
+.wurzel-selector{
+  grid-column-end: span 3;
 }
 .SchneideZahn >*{
 }
@@ -59,8 +80,6 @@ export default {
   justify-self: center;
 }
 .mitte-mitte{
-  width: 34%;
-  justify-self: center;
   border-radius: 6px;
   margin: 3px 1px 1px;
   z-index: 2;
@@ -69,12 +88,20 @@ export default {
   border-radius: 6px;
   display: grid;
   grid-template-rows: 33% 34% 33%;
-  grid-template-columns: 33% 34% 33%;
   padding-bottom: 3px;
 
 }
 .unten-mitte >*{
   border-radius: 6px;
+}
+.oben-links{
+  margin-left: 5px;
+}
+.oben-mitte{
+  margin-left: -1px;
+}
+.oben-rechts{
+  margin-left: -12px;
 }
 .unten-links{
   border-radius: 6px;
@@ -90,9 +117,8 @@ export default {
   border-width: 2px;
   border-radius: 4px;
 }
-.spezial{
-  margin-left: 2px;
-  grid-row-start: 1;
-  grid-column-start: 2;
+.pHoch{
+  margin-top: -14px;
+  margin-bottom: 10px;
 }
 </style>

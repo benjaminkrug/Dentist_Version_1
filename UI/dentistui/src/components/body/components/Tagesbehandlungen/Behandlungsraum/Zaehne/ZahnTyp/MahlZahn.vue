@@ -1,12 +1,24 @@
 <template>
-  <div class="MahlZahn">
-    <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
-    <div />
-    <div class="box mitte-mitte"/>
-    <div />
-    <div />
-    <div class="unten-mitte" >
-      <spezial-form-round class="spezial" />
+  <div>
+    <div v-if="!isUnterKiefer"  class="MahlZahn" :style="styleMahlZahn">
+      <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln"/>
+      <div />
+      <div class="box mitte-mitte"/>
+      <div />
+      <div />
+      <div class="unten-mitte" >
+        <spezial-form-round class="spezial" />
+      </div>
+    </div>
+    <div v-else class="MahlZahn" :style="styleMahlZahn">
+      <div />
+      <div class="unten-mitte" >
+        <spezial-form-round class="spezial" />
+      </div>
+      <div />
+      <div />
+      <div class="box mitte-mitte"/>
+      <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
     </div>
   </div>
 </template>
@@ -20,6 +32,17 @@ export default {
     wurzeln:{
       type: Number,
       default: 1
+    },
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
+    },
+  },
+  computed:{
+    styleMahlZahn() {
+      let returnObject = {}
+      returnObject = {gridTemplateRows: this.isUnterKiefer ? '35% 20% 45%' : '35% 20% 45%' }
+      return returnObject;
     },
   },
   components: {
@@ -39,7 +62,6 @@ export default {
   height: 100%;
   display: grid;
   grid-template-columns: 30% 40% 30%;
-  grid-template-rows: 35% 20% 45%;
 }
 .wurzel-selector{
   grid-column-end: span 3;

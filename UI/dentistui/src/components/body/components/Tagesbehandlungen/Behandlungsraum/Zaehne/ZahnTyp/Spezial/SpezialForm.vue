@@ -2,23 +2,7 @@
   <div class="spezial-form">
     <v-stage ref="stage" :config="stageSize">
       <v-layer>
-        <v-line :config="{
-          x: 0,
-          y: 3,
-          points: [
-          16, 35,
-          16,25,
-          12, 2,
-          10, 1,
-          8, 2,
-          4, 25,
-          4, 35,
-          ],
-          tension: 0,
-          closed: true,
-          stroke: 'black',
-          fill: 'white',
-        }"/>
+        <v-line :config="lineConfig"/>
       </v-layer>
       <v-layer ref="dragLayer"></v-layer>
     </v-stage>
@@ -28,6 +12,12 @@
 <script>
 export default {
   name: "SpezialForm",
+  props:{
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
+    },
+  },
   data() {
     return {
       stageSize: {
@@ -35,6 +25,37 @@ export default {
         height:40
       }
     };
+  },
+  computed: {
+    lineConfig(){
+      var points= [
+        16, 35,
+        16,25,
+        12, 2,
+        10, 1,
+        8, 2,
+        4, 25,
+        4, 35,
+      ];
+      var pointsUnterkiefer= [
+        16, 1,
+        16,12,
+        12, 34,
+        10, 35,
+        8, 34,
+        4, 12,
+        4, 1,
+      ];
+      return {
+        x: 0,
+        y: 3,
+        points: this.isUnterKiefer? pointsUnterkiefer: points,
+        tension: 0,
+        closed: true,
+        stroke: 'black',
+        fill: 'white',
+      }
+    }
   }
 
 }

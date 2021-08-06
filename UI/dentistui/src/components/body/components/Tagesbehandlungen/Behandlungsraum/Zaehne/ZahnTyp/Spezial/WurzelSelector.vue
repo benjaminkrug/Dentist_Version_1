@@ -1,8 +1,8 @@
 <template>
   <div class="wurzel-selector">
-    <wurzel-one v-if="wurzeln === 1" />
-    <wurzel-two v-if="wurzeln === 2" />
-    <wurzel-three v-if="wurzeln === 3" />
+    <wurzel-one v-if="wurzeln === 1"  :isUnterKiefer="isUnterKiefer" />
+    <wurzel-two v-if="wurzeln === 2"  :isUnterKiefer="isUnterKiefer" />
+    <wurzel-three v-if="wurzeln === 3"  :isUnterKiefer="isUnterKiefer" />
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     wurzeln:{
       type: Number,
       default: 1
+    },
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
     },
   },
   components: {

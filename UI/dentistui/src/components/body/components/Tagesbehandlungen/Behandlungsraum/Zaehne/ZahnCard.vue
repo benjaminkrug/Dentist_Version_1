@@ -1,10 +1,10 @@
 <template>
   <div class="ZahnCard">
-    <schneide-zahn v-if="type === 'SchneideZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" />
-    <eck-zahn v-if="type === 'EckZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" />
-    <vormahl-zahn v-if="type === 'VormahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" />
-    <mahl-zahn v-if="type === 'MahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" />
-    <weisheits-zahn v-if="type === 'WeisheitsZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" />
+    <schneide-zahn v-if="type === 'SchneideZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
+    <eck-zahn v-if="type === 'EckZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
+    <vormahl-zahn v-if="type === 'VormahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
+    <mahl-zahn v-if="type === 'MahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
+    <weisheits-zahn v-if="type === 'WeisheitsZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
   </div>
 </template>
 
@@ -32,6 +32,10 @@ export default {
     wurzeln:{
       type: Number,
       default: 1
+    },
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
     },
   }
 

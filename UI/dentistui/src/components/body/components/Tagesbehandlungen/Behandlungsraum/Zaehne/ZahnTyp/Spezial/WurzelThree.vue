@@ -1,9 +1,9 @@
 <template>
   <div class="wurzel-three">
     <div />
-    <spezial-form />
-    <spezial-form />
-    <spezial-form />
+    <spezial-form :isUnterKiefer="isUnterKiefer" />
+    <spezial-form :isUnterKiefer="isUnterKiefer" />
+    <spezial-form :isUnterKiefer="isUnterKiefer" />
   </div>
 </template>
 
@@ -11,12 +11,25 @@
 import SpezialForm from './SpezialForm.vue'
 export default {
   name: "WurzelThree",
+  props:{
+    isUnterKiefer:{
+      type: Boolean,
+      default: false
+    },
+  },
   components: {
     SpezialForm
   },
   data() {
     return {
     };
+  },
+  computed:{
+    styleIsUnterkiefer(){
+      let returnObject = {}
+      returnObject = {marginTop: this.isUnterKiefer ? '-10px' : '' }
+      return returnObject;
+    },
   }
 
 }
