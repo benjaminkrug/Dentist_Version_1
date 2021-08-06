@@ -1,5 +1,5 @@
 <template>
-  <div class="wurzel-selector">
+  <div class="wurzel-selector"  :style="styleIsUnterkiefer">
     <wurzel-one v-if="wurzeln === 1"  :isUnterKiefer="isUnterKiefer" />
     <wurzel-two v-if="wurzeln === 2"  :isUnterKiefer="isUnterKiefer" />
     <wurzel-three v-if="wurzeln === 3"  :isUnterKiefer="isUnterKiefer" />
@@ -30,6 +30,13 @@ export default {
   data() {
     return {
     };
+  },
+  computed:{
+    styleIsUnterkiefer(){
+      let returnObject = {}
+      returnObject = {marginTop: this.isUnterKiefer ? '-10px' : '' }
+      return returnObject;
+    },
   }
 
 }

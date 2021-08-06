@@ -25,12 +25,7 @@ export default {
     };
   },
   computed:{
-    styleIsUnterkiefer(){
-      let returnObject = {}
-      returnObject = {marginTop: this.isUnterKiefer ? '-10px' : '' }
-      return returnObject;
-    },
-  }
+      }
 
 }
 </script>

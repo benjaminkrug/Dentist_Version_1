@@ -1,5 +1,5 @@
 <template>
-  <div class="wurzel-two" :style="styleIsUnterkiefer">
+  <div class="wurzel-two">
     <div />
     <div />
     <spezial-form :isUnterKiefer="isUnterKiefer" />
@@ -25,11 +25,6 @@ export default {
     };
   },
   computed:{
-    styleIsUnterkiefer(){
-      let returnObject = {}
-      returnObject = {marginTop: this.isUnterKiefer ? '-10px' : '' }
-      return returnObject;
-    },
   }
 }
 </script>

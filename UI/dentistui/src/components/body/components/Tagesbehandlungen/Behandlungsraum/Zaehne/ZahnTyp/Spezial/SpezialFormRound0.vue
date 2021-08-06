@@ -75,6 +75,8 @@ export default {
 <style scoped>
 .spezial-border {
   position: relative;
+  margin-top: 3px;;
+  margin-left: 1px;
 }
 .spezial-form-top{
   top: -1px;
