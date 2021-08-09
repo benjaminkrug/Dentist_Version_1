@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ClassLib.DBModels;
+    using ClassLib.DTO;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Npgsql;
@@ -43,10 +44,18 @@
         [HttpGet("getAllUser")]
         public async Task<List<UserDBModel>> GetAllUser()
         {
-            var g = _dp.GetAll<UserDBModel>("getAllUser.sql", null, CommandType.Text);
+            var g = new List<UserDBModel>();
+            try
+            {
+                g = _dp.GetAll<UserDBModel>("getAllUser.sql", null, CommandType.Text);
 
-            Console.WriteLine(g);
+                Console.WriteLine(g);
 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return g;
         }
 
@@ -54,6 +63,19 @@
         public async Task<string> Test1()
         {
             return "hallo";
+        }
+
+        [HttpPost("addPatient")]
+        public async void AddPatient([FromBody] UserDto dto)
+        {
+            dto.Id = Guid.NewGuid();
+            _dp.Insert<UserDBModel>("addPatient.sql", new Dapper.DynamicParameters(new UserDBModel(dto)), CommandType.Text);
+        }
+
+        [HttpPost("removePatientById/{patientId:Guid}")]
+        public async void RemovePatientById([FromRoute] Guid patientId)
+        {
+            _dp.Execute("removeUserById.sql", new Dapper.DynamicParameters(new { id = patientId }), CommandType.Text);
         }
 
     }

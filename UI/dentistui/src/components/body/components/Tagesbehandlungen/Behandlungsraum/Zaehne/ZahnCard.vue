@@ -4,7 +4,7 @@
       <div class="ZahnCardAufbau">
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" />
         <div />
-        <div class="box mitte-mitte" :style="styleMitteMitte" />
+        <div class="box mitte-mitte" :style="styleMitteMitte" @click="AddFuellung('mitte-mitte')"/>
         <div />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" class="unten-mitte" >
@@ -126,6 +126,9 @@ export default {
     },
   },
   methods:{
+    AddFuellung(part){
+      this.$emit("addFuellung", part)
+    },
     AddIfIsPosition(position, key, value ){
       let returnObject = {}
       if(this.zahnStyle.find(x => x.position == position)){

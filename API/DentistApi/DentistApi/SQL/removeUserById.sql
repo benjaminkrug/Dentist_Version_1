@@ -1,0 +1,1 @@
+﻿Delete FROM "User" WHERE "Id" =@id;

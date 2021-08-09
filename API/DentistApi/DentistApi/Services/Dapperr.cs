@@ -29,9 +29,10 @@ namespace Services
              
         }  
   
-        public int Execute(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)  
-        {  
-            throw new NotImplementedException();  
+        public void Execute(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        {
+            using IDbConnection db = new NpgsqlConnection(_config.GetConnectionString(Connectionstring));
+            db.Execute(GetFileQueryIfPossible(sp), parms, commandType: commandType);
         }  
   
         public T Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.Text)  
@@ -83,8 +84,8 @@ namespace Services
             }  
   
             return result;  
-        }  
-  
+        }
+
         public T Update<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)  
         {  
             T result;  
