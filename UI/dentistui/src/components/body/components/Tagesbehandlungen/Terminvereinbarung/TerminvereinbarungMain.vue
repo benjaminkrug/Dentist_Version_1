@@ -31,8 +31,8 @@ export default {
     },
   },
   mounted() {
-    const min = new Date('2012-12-17T00:00:00').getTime()
-    const max = new Date('2022-12-17T00:00:00').getTime()
+    const min = new Date('2012-12-17T00:00:00')
+    const max = new Date('2022-12-17T00:00:00')
     this.GetAllTermineByTimeRange({
         startDate: min,
         endDate: max

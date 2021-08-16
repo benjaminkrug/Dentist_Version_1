@@ -10,10 +10,7 @@
     using Dapper;
     using DentistBuisness.Termine;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Npgsql;
     using Services;
-    using static Webapp.Controllers.UserController;
 
     public class TerminController : Controller
     {
@@ -46,10 +43,10 @@
             return result;
         }
 
-        [HttpGet("getAllTermineByTimeRange")]
-        public async Task<List<TermineTableDto>> GetAllTermineByTimeRange(DateTime startDate, DateTime endDate)
+        [HttpPost("getAllTermineByTimeRange")]
+        public async Task<List<TermineTableDto>> GetAllTermineByTimeRange([FromBody] TimeRange Date)
         {
-            return _termineLogic.GetAllTermineByTimeRange(startDate, endDate);
+            return _termineLogic.GetAllTermineByTimeRange(Date.startDate, Date.endDate);
         }
 
         [HttpPost("setTerminStatusById")]

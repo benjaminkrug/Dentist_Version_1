@@ -53,7 +53,7 @@ export default new Vuex.Store({
     },
     async GetAllTermineByTimeRange({commit}, timeRange) {
       commit('setTermine', await axios
-        .get('https://localhost:5001/GetAllTermineByTimeRange',
+        .post('https://localhost:5001/GetAllTermineByTimeRange',
           {
             startDate: timeRange.startDate,
             endDate: timeRange.endDate
