@@ -8,6 +8,7 @@
           </template>
           <b-dropdown-item href="/Tagesbehandlungen/Rezeption">Rezeption</b-dropdown-item>
           <b-dropdown-item href="/Tagesbehandlungen/Behandlungsraum">Behandlungsraum</b-dropdown-item>
+          <b-dropdown-item href="/Tagesbehandlungen/Terminvereinbarung">Terminvereinbarung</b-dropdown-item>
         </b-nav-item-dropdown>
         <li class="nav-item">
           <a class="nav-link" href="/Patient">Patient</a>

@@ -317,6 +317,37 @@
         "runtime": {
           "bin/placeholder/ClassLib.dll": {}
         }
+      },
+      "DentistBuisness/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ClassLib": "1.0.0",
+          "DentistDB": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DentistBuisness.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DentistBuisness.dll": {}
+        }
+      },
+      "DentistDB/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ClassLib": "1.0.0",
+          "Dapper": "2.0.35",
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "3.0.0",
+          "System.Collections": "4.3.0"
+        },
+        "compile": {
+          "bin/placeholder/DentistDB.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DentistDB.dll": {}
+        }
       }
     }
   },
@@ -1036,12 +1067,24 @@
       "type": "project",
       "path": "../ClassLib/ClassLib.csproj",
       "msbuildProject": "../ClassLib/ClassLib.csproj"
+    },
+    "DentistBuisness/1.0.0": {
+      "type": "project",
+      "path": "../DentistBuisness/DentistBuisness.csproj",
+      "msbuildProject": "../DentistBuisness/DentistBuisness.csproj"
+    },
+    "DentistDB/1.0.0": {
+      "type": "project",
+      "path": "../DentistDB/DentistDB.csproj",
+      "msbuildProject": "../DentistDB/DentistDB.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "ClassLib >= 1.0.0",
       "Dapper >= 2.0.35",
+      "DentistBuisness >= 1.0.0",
+      "DentistDB >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 3.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.0.0",
       "System.Collections >= 4.3.0"
@@ -1081,6 +1124,12 @@
           "projectReferences": {
             "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\ClassLib\\ClassLib.csproj": {
               "projectPath": "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\ClassLib\\ClassLib.csproj"
+            },
+            "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\DentistBuisness\\DentistBuisness.csproj": {
+              "projectPath": "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\DentistBuisness\\DentistBuisness.csproj"
+            },
+            "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\DentistDB\\DentistDB.csproj": {
+              "projectPath": "D:\\privateWork\\dentist\\Version_1\\API\\DentistApi\\DentistDB\\DentistDB.csproj"
             }
           }
         }

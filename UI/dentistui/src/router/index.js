@@ -22,9 +22,12 @@ const router = new Router({
           component: () => import('../components/body/components/Tagesbehandlungen/Behandlungsraum/BehandlungsraumMain.vue'),
           props: true
         },
+          {
+            path: 'Terminvereinbarung',
+            component: () => import('../components/body/components/Tagesbehandlungen/Terminvereinbarung/TerminvereinbarungMain.vue'),
+            props: true
+          },
         {
-          // UserPosts will be rendered inside User's <router-view>
-          // when /user/:id/posts is matched
           path: 'Rezeption',
           component: () => import('../components/body/components/Tagesbehandlungen/Rezeption/RezeptionMain.vue')
         }

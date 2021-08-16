@@ -33,6 +33,8 @@
         "dependencies": {
           "ClassLib": "1.0.0",
           "Dapper": "2.0.35",
+          "DentistBuisness": "1.0.0",
+          "DentistDB": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "3.0.0",
           "System.Collections": "4.3.0",
@@ -496,6 +498,33 @@
         },
         "compile": {
           "ClassLib.dll": {}
+        }
+      },
+      "DentistBuisness/1.0.0": {
+        "dependencies": {
+          "ClassLib": "1.0.0",
+          "DentistDB": "1.0.0"
+        },
+        "runtime": {
+          "DentistBuisness.dll": {}
+        },
+        "compile": {
+          "DentistBuisness.dll": {}
+        }
+      },
+      "DentistDB/1.0.0": {
+        "dependencies": {
+          "ClassLib": "1.0.0",
+          "Dapper": "2.0.35",
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "3.0.0",
+          "System.Collections": "4.3.0"
+        },
+        "runtime": {
+          "DentistDB.dll": {}
+        },
+        "compile": {
+          "DentistDB.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -2395,6 +2424,16 @@
       "hashPath": "system.threading.tasks.extensions.4.5.2.nupkg.sha512"
     },
     "ClassLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DentistBuisness/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DentistDB/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

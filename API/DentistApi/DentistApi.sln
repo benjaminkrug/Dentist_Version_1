@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DentistApi", "DentistApi\DentistApi.csproj", "{A51D697F-1303-481E-8954-75460F48E5D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLib", "ClassLib\ClassLib.csproj", "{869C28C1-5F29-404D-87DB-A6E2463AAF94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLib", "ClassLib\ClassLib.csproj", "{869C28C1-5F29-404D-87DB-A6E2463AAF94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentistBuisness", "DentistBuisness\DentistBuisness.csproj", "{061B4FE5-6630-48D5-8780-4A9BAB27FDA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentistDB", "DentistDB\DentistDB.csproj", "{7E51F7B6-D52C-46CA-B887-015331BF5418}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{869C28C1-5F29-404D-87DB-A6E2463AAF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{869C28C1-5F29-404D-87DB-A6E2463AAF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{869C28C1-5F29-404D-87DB-A6E2463AAF94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061B4FE5-6630-48D5-8780-4A9BAB27FDA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061B4FE5-6630-48D5-8780-4A9BAB27FDA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061B4FE5-6630-48D5-8780-4A9BAB27FDA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061B4FE5-6630-48D5-8780-4A9BAB27FDA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E51F7B6-D52C-46CA-B887-015331BF5418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E51F7B6-D52C-46CA-B887-015331BF5418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E51F7B6-D52C-46CA-B887-015331BF5418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E51F7B6-D52C-46CA-B887-015331BF5418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

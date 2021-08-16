@@ -1,33 +1,31 @@
 <template>
-  <div>
-    <div v-if="headerlist.length > 0" class="sheduler">
-      <div class="header">
-        <div>
-        </div>
-        <div>
-        </div>
-        <div v-for="(name, i) in headerlist" :key="name + i" >
-          {{ name }}
-        </div>
+  <div v-if="headerlist.length > 0" class="sheduler">
+    <div class="header">
+      <div>
       </div>
-      <div v-for="hour in list" :key="hour.hour">
+      <div>
+      </div>
+      <div v-for="(name, i) in headerlist" :key="name + i" >
+        {{ name }}
+      </div>
+    </div>
+    <div v-for="hour in list" :key="hour.hour">
+      <div
+        class="card"
+        v-for="mins in hour.mins"
+        :key="mins.min"
+      >
         <div
-          class="card"
-          v-for="mins in hour.mins"
-          :key="mins.min"
+          :style="aktuellHour == hour.hour && aktuellMinuteMin == mins.min? 'background-color: grey;' : ''"
         >
-          <div
-            :style="aktuellHour == hour.hour && aktuellMinuteMin == mins.min? 'background-color: grey;' : ''"
-          >
-            {{hour.hour}}.{{mins.min}}
-          </div>
-          <div>
-            |
-          </div>
-          <div v-for="(header, i) in headerlist" :key="header +  i">
-            <div v-for="(task, i) in mins.groupedTasks[header]" :key="task.last_Name + i">
-              <KalenderCard :infos="task" />
-            </div>
+          {{hour.hour}}.{{mins.min}}
+        </div>
+        <div>
+          |
+        </div>
+        <div v-for="(header, i) in headerlist" :key="header +  i">
+          <div v-for="(task, i) in mins.groupedTasks[header]" :key="task.last_Name + i">
+            <KalenderCard :infos="task" />
           </div>
         </div>
       </div>
@@ -124,7 +122,9 @@ export default {
 
 <style scoped>
 .sheduler{
- margin: 5px;
+  
+overflow-y: auto;
+height: 100%;
 }
 .card{
   text-align: left;

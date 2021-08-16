@@ -25,7 +25,7 @@
               <td>{{ patient.last_Name }}</td>
               <td>{{ patient.birthday.split('T')[0] }}</td>
               <td><b-icon icon="three-dots-vertical" :id="'popover-info' + patient.id" /></td>
-              <b-popover class="popover" :target="'popover-info' + patient.id" triggers="hover" placement="bottom">
+              <b-popover class="popover" :target="'popover-info' + patient.id" triggers="hover">
                 <b-icon icon="x-circle" @click="removePatientById(patient.id)" />
               </b-popover>
             </tr>

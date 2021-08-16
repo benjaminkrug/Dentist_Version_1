@@ -19,5 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLib\ClassLib.csproj" />
+    <ProjectReference Include="..\DentistBuisness\DentistBuisness.csproj" />
+    <ProjectReference Include="..\DentistDB\DentistDB.csproj" />
   </ItemGroup>
 </Project>

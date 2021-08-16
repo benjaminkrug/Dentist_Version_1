@@ -14,6 +14,13 @@ D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\Npgsql.dll
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\DentistBuisness.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\DentistDB.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\DentistBuisness.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\DentistDB.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.csproj.AssemblyReference.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.AssemblyInfoInputs.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.AssemblyInfo.cs
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.csproj.CoreCompileInputs.cache
@@ -40,6 +47,3 @@ D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.dll
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.pdb
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.genruntimeconfig.cache
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.csproj.AssemblyReference.cache
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.dll
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\bin\Debug\netcoreapp3.1\ClassLib.pdb

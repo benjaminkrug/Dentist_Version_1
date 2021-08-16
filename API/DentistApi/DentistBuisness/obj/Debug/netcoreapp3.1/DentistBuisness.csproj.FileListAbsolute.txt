@@ -1,0 +1,14 @@
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\DentistBuisness.deps.json
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\DentistBuisness.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\DentistBuisness.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\ClassLib.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\DentistDB.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\ClassLib.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\bin\Debug\netcoreapp3.1\DentistDB.pdb
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.csproj.AssemblyReference.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.AssemblyInfoInputs.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.AssemblyInfo.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.csproj.CoreCompileInputs.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.csproj.CopyComplete
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.dll
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistBuisness\obj\Debug\netcoreapp3.1\DentistBuisness.pdb

@@ -8,6 +8,7 @@
     using ClassLib.DBModels;
     using ClassLib.DTO;
     using Dapper;
+    using DentistBuisness.Termine;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Npgsql;
@@ -17,10 +18,12 @@
     public class TerminController : Controller
     {
         private readonly IDapper _dp;
+        private readonly ITermineLogic _termineLogic;
 
-        public TerminController(IDapper dp)
+        public TerminController(IDapper dp, ITermineLogic termineLogic)
         {
             _dp = dp;
+            _termineLogic = termineLogic;
         }
 
 
@@ -38,9 +41,15 @@
                 var split = t.Time.Split(':');
                 var time = t.Datum + new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]));
                 var termin_long = terminTyps.Find(x => x.short_name == t.Typ).name;
-                return new TermineTableDto() { Id = t.Id, Status = t.Status, Typ_short = t.Typ, Raum = t.Raum, Typ_long = termin_long, Arzt = arzt.Last_Name, TerminDate = time, UserId = user.Id,First_Name = user.First_Name, Last_Name = user.Last_Name, Birthday = user.Birthday };
+                return new TermineTableDto() { Id = t.Id, Status = t.Status, Typ_short = t.Typ, Raum = t.Raum, Typ_long = termin_long, Arzt = arzt.Last_Name, TerminDate = time, UserId = user.Id, First_Name = user.First_Name, Last_Name = user.Last_Name, Birthday = user.Birthday };
             }).ToList();
             return result;
+        }
+
+        [HttpGet("getAllTermineByTimeRange")]
+        public async Task<List<TermineTableDto>> GetAllTermineByTimeRange(DateTime startDate, DateTime endDate)
+        {
+            return _termineLogic.GetAllTermineByTimeRange(startDate, endDate);
         }
 
         [HttpPost("setTerminStatusById")]

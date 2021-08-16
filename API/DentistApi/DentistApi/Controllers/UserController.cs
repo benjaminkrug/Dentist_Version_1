@@ -7,6 +7,9 @@
     using System.Threading.Tasks;
     using ClassLib.DBModels;
     using ClassLib.DTO;
+    using Dapper;
+    using DentistBuisness.Repositories.Gebiss;
+    using DentistDB.Repositories.Gebiss;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Npgsql;
@@ -15,10 +18,12 @@
     public class UserController : Controller
     {
         private readonly IDapper _dp;
+        private IGebissLogic _gebissLogic;
 
-        public UserController(IDapper dp)
+        public UserController(IDapper dp, IGebissLogic gebissLogic)
         {
             _dp = dp;
+            _gebissLogic = gebissLogic;
         }
 
         [HttpGet("Users")]
@@ -69,13 +74,15 @@
         public async void AddPatient([FromBody] UserDto dto)
         {
             dto.Id = Guid.NewGuid();
-            _dp.Insert<UserDBModel>("addPatient.sql", new Dapper.DynamicParameters(new UserDBModel(dto)), CommandType.Text);
+            _dp.Insert<UserDBModel>("addPatient.sql", new DynamicParameters(new UserDBModel(dto)), CommandType.Text);
+            _gebissLogic.AddGebiss((Guid)dto.Id);
         }
 
         [HttpPost("removePatientById/{patientId:Guid}")]
         public async void RemovePatientById([FromRoute] Guid patientId)
         {
-            _dp.Execute("removeUserById.sql", new Dapper.DynamicParameters(new { id = patientId }), CommandType.Text);
+            _dp.Execute("removeUserById.sql", new DynamicParameters(new { id = patientId }), CommandType.Text);
+
         }
 
     }

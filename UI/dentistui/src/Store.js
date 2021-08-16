@@ -51,6 +51,19 @@ export default new Vuex.Store({
           })
         }))
     },
+    async GetAllTermineByTimeRange({commit}, timeRange) {
+      commit('setTermine', await axios
+        .get('https://localhost:5001/GetAllTermineByTimeRange',
+          {
+            startDate: timeRange.startDate,
+            endDate: timeRange.endDate
+          })
+        .then(response => {
+          return response.data.map(x => {
+            return {...x, terminDate: new Date(x.terminDate), birthday: new Date(x.birthday)}
+          })
+        }))
+    },
     async loadAllAerzte({ commit }) {
       commit('setAerzte', await axios
         .get('https://localhost:5001/getAllAerzte')

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Services
 {
-    public class Dapperr: IDapper
+    public class Dapper: IDapper
     {
         
         private readonly IConfiguration _config;  
@@ -20,7 +20,7 @@ namespace Services
         private string query = @"D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\SQL\";
         private string _sql = ".sql";
 
-        public  Dapperr(IConfiguration config)  
+        public  Dapper(IConfiguration config)  
         {  
             _config = config;  
         }  

@@ -10,6 +10,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './Store'
 import VueKonva from 'vue-konva';
 import { Datetime } from 'vue-datetime'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
 
@@ -34,5 +36,6 @@ Vue.use(VueAxios, axios)
 new Vue({
   router,
   store: store,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')

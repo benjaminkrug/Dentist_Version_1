@@ -1,5 +1,13 @@
 namespace mainApi
 {
+    using DentistBuisness.Repositories.Gebiss;
+    using DentistBuisness.Termine;
+    using DentistDB;
+    using DentistDB.Repositories.Arzt;
+    using DentistDB.Repositories.Gebiss;
+    using DentistDB.Repositories.Termine;
+    using DentistDB.Repositories.User;
+    using DentistDB.Repositories.Zahn;
     using IdentityServerKoenigsleiten.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -39,6 +47,14 @@ namespace mainApi
                 connectionString = _config.GetConnectionString("DefaultConnection");
             }
 
+            services.AddScoped<IGebissRepository, GebissRepository>();
+            services.AddScoped<IZahnRepository, ZahnRepository>();
+            services.AddScoped<ITermineRepository, TermineRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArztRepository, ArztRepository>();
+            services.AddScoped<IGebissLogic, GebissLogic>();
+            services.AddScoped<ITermineLogic, TermineLogic>(); 
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -49,7 +65,8 @@ namespace mainApi
             });
 
 
-            services.AddScoped<IDapper, Dapperr>();
+            services.AddScoped<IDapper, Dapper>();
+            services.AddScoped<DentistDB.Services.IDapper, DentistDB.Services.Dapper>();
 
             services.AddControllersWithViews();
         }

@@ -43,6 +43,9 @@
         public Guid _47 { get; set; }
         public Guid _48 { get; set; }
 
+        public GebissDto()
+        { 
+        }
         public GebissDto(GebissDbModel model)
         {
             Id = model.Id;
