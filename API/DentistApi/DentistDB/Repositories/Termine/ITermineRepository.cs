@@ -8,5 +8,6 @@ namespace DentistDB.Repositories.Termine
     {
         public List<TerminTypDBModel> GetAllTerminTyps();
         List<TerminDbModel> GetAllTermineByTimeRange(DateTime startDate, DateTime endDate);
+        void AddTermin(TerminDbModel terminDbModel);
     }
 }

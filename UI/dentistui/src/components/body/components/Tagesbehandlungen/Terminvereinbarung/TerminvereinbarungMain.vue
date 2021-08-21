@@ -2,13 +2,13 @@
   <div class="Fill">
     <h1 @click="chnageType">Terminvereinbarung</h1>
     <div>
-      <calendar :type="type"/>
+      <calendar :type="type" :eventss="events" :focus="focus"/>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import calendar from '@/components/helper/Calendar.vue'
 
@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      type: 'month'
+      type: 'month',
+      focus: '2021-06-26T11:22:06'
     }
   },
   methods: {
@@ -29,14 +30,40 @@ export default {
     chnageType() {
       this.type= this.type!= 'month' ? 'month' : 'week'
     },
+    UpdateEvents(){
+      const min = Date.now.setDate(0)
+      const max = min.setMonth(min.getMonth+1)
+      this.GetAllTermineByTimeRange({
+          startDate: min,
+          endDate: max
+      });
+    }
+  },
+  computed:{
+    ...mapState([
+      'termine',
+    ]),
+    events() {
+      return this.termine.map(t => {
+        return {
+          timed: true,
+          start: t.terminDate.getTime(),
+          end: t.terminDate.getTime() + 15,
+          color: "#2196F3",
+          name: 'benni'
+        }
+      })
+    }
   },
   mounted() {
-    const min = new Date('2012-12-17T00:00:00')
-    const max = new Date('2022-12-17T00:00:00')
-    this.GetAllTermineByTimeRange({
-        startDate: min,
-        endDate: max
-    });
+    this.UpdateEvents();
+    // this.events.push({
+    //     timed: true,
+    //     start: new Date('2021-08-12T00:04:00').getTime(),
+    //     end: new Date('2021-08-12T00:05:00').getTime(),
+    //     color: "#2196F3",
+    //     name: 'benni'
+    // })
   }
 }
 </script>

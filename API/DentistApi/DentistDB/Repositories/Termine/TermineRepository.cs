@@ -17,6 +17,11 @@
             _dp = dp;
         }
 
+        public void AddTermin(TerminDbModel terminDbModel)
+        {
+            _dp.Execute("AddTermin.sql", null, CommandType.Text);
+        }
+
         public List<TerminDbModel> GetAllTermineByTimeRange(DateTime startDate, DateTime endDate)
         {
             return _dp.GetAll<TerminDbModel>("GetAllTermineByTimeRange.sql", new DynamicParameters(new { 

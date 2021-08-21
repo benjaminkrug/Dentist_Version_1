@@ -64,6 +64,10 @@ export default new Vuex.Store({
           })
         }))
     },
+    async addEvent(state, event){
+      await axios
+        .post('https://localhost:5001/addEvent', event)
+    },
     async loadAllAerzte({ commit }) {
       commit('setAerzte', await axios
         .get('https://localhost:5001/getAllAerzte')

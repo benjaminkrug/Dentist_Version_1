@@ -1,48 +1,54 @@
 <template>
   <div class="Fill">
-    <v-row class="fill-height">
-      <v-col>
-        <v-sheet height="600">
-          <v-calendar
-            ref="calendar"
-            v-model="value"
-            color="primary"
-            :type="type"
-            :events="events"
-            :event-color="getEventColor"
-            :event-ripple="false"
-            @change="getEvents"
-            @mousedown:event="startDrag"
-            @mousedown:time="startTime"
-            @mousemove:time="mouseMove"
-            @mouseup:time="endDrag"
-            @mouseleave.native="cancelDrag"
-          >
-            <template v-slot:event="{ event, timed, eventSummary }">
-              <div
-                class="v-event-draggable"
-                v-html="eventSummary()"
-              ></div>
-              <div
-                v-if="timed"
-                class="v-event-drag-bottom"
-                @mousedown.stop="extendBottom(event)"
-              ></div>
-            </template>
-          </v-calendar>
-        </v-sheet>
-      </v-col>
-    </v-row>
+    <v-sheet height="750">
+      <v-calendar
+        ref="calendar"
+        v-model="value"
+        color="primary"
+        :type="type"
+        :events="eventss"
+        :event-color="getEventColor"
+        :event-ripple="false"
+        @change="getEvents"
+        @mousedown:event="startDrag"
+        @mousedown:time="startTime"
+        @mousemove:time="mouseMove"
+        @mouseup:time="endDrag"
+        @mouseleave.native="cancelDrag"
+      >
+        <template v-slot:event="{ event, timed, eventSummary }">
+          <div
+            class="v-event-draggable"
+            v-html="eventSummary()"
+          ></div>
+          <div
+            v-if="timed"
+            class="v-event-drag-bottom"
+            @mousedown.stop="extendBottom(event)"
+          ></div>
+        </template>
+      </v-calendar>
+    </v-sheet>
+    <create-event-confirm-modal :data="createEvent" :show="createEventConfirmModal" @ok="createEventConfirmModal = false" @cancel="createEventConfirmModal = false"/>
   </div>
 </template>
 
 <script>
 
+import CreateEventConfirmModal from './CreateEventConfirmModal.vue'
 
 export default {
     name: "Calendar",
     props:{
-      type: String
+      type: String,
+      eventss: Array,
+      focus: {
+        type: String,
+        default: ''
+      },
+    },
+    components: {
+      CreateEventConfirmModal
     },
     data: () => ({
       value: '',
@@ -53,7 +59,8 @@ export default {
       dragStart: null,
       createEvent: null,
       createStart: null,
-      extendOriginal: null
+      extendOriginal: null,
+      createEventConfirmModal: false,
     }),
     methods: {
       startDrag ({ event, timed }) {
@@ -112,8 +119,14 @@ export default {
       },
       endDrag () {
         this.dragTime = null
-        this.dragEvent = null
-        this.createEvent = null
+        if(this.dragEvent != null){
+          this.dragEventConfirmModal = true;
+          this.$emit("dragEvent", this.dragEvent)
+        }
+        if(this.createEvent != null){
+          this.createEventConfirmModal = true;
+          this.$emit("createEvent", this.createEvent)
+        }
         this.createStart = null
         this.extendOriginal = null
       },
@@ -129,7 +142,6 @@ export default {
           }
         }
 
-        this.createEvent = null
         this.createStart = null
         this.dragTime = null
         this.dragEvent = null
@@ -189,15 +201,27 @@ export default {
       rndElement (arr) {
         return arr[this.rnd(0, arr.length - 1)]
       },
+      refocus() {
+        this.value = this.focus
+      }
     },
+    watch: {
+      focus(){
+        this.refocus()
+      }
+    },
+    mounted() {
+      this.refocus()
+    }
   }
 </script>
 
 
 <style scoped lang="scss">
 .Fill{
-  width: 100%;
+  width: 98%;
   height: 100vh;
+  margin-left: 1%;
 }
 .v-event-draggable {
   padding-left: 6px;

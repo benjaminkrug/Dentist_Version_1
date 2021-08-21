@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal :id="modalId" :title="title" @ok="$emit('ok')" @cancel="$emit('cancel')">
+    <b-modal :id="modalId" :title="title" @ok="$emit('ok')" @cancel="$emit('cancel')" @close="$emit('cancel')">
       <slot></slot>
     </b-modal>
   </div>
@@ -10,8 +10,15 @@
 export default {
   name: "Popup",
   props:{
-    modalId: String,
-    title: String
+    modalId: {
+      type: String,
+      default: ''
+    },
+    title: String,
+    show:{
+      type: Boolean,
+      default: false
+    },
   },
   components: {
   },
@@ -19,7 +26,21 @@ export default {
     return {
     };
   },
+  methods: {
+  },
   computed:{
+  },
+  watch: {
+    show(value){
+      if(value){
+        this.$bvModal.show(this.modalId)
+      }
+      else{
+        this.$bvModal.hide(this.modalId)
+      }
+    }
+  },
+  mounted(){
   }
 
 }
