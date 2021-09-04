@@ -19,7 +19,8 @@
 
         public void AddTermin(TerminDbModel terminDbModel)
         {
-            _dp.Execute("AddTermin.sql", null, CommandType.Text);
+            terminDbModel.Id = Guid.NewGuid();
+            _dp.Execute("AddTermin.sql", new DynamicParameters(terminDbModel), CommandType.Text);
         }
 
         public List<TerminDbModel> GetAllTermineByTimeRange(DateTime startDate, DateTime endDate)

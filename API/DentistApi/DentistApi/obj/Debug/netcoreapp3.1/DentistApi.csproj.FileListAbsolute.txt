@@ -33,13 +33,6 @@ D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.TagHelpers.input.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.TagHelpers.output.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.RazorCoreGenerate.cache
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
-D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.RazorTargetAssemblyInfo.cache
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.RazorTargetAssemblyInfo.cs
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.Views.pdb
@@ -47,3 +40,10 @@ D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.dll
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.pdb
 D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\DentistApi.genruntimeconfig.cache
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\Home\Index.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\Home\Privacy.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\Shared\Error.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\Shared\_Layout.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\_ViewImports.cshtml.g.cs
+D:\privateWork\dentist\Version_1\API\DentistApi\DentistApi\obj\Debug\netcoreapp3.1\Razor\SQL\Views\_ViewStart.cshtml.g.cs

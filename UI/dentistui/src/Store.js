@@ -115,13 +115,15 @@ export default new Vuex.Store({
           return response.data.reduce((a,x) => ({...a, [x.userId]: {...x}}), {})
         }))
     },
-    async addPatient(state, newPatient) {
+    async addPatient({ dispatch }, newPatient) {
       await axios
         .post('https://localhost:5001/addPatient', newPatient)
+        .then(() => dispatch('loadAllPatients'))
     },
-    async removePatientById(state, patientId) {
+    async removePatientById({ dispatch }, patientId) {
       await axios
         .post(`https://localhost:5001/removePatientById/${patientId}`)
+        .then(() => dispatch('loadAllPatients'))
     }
   },
   getters:{

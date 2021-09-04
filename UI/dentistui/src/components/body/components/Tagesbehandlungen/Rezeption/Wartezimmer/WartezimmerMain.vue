@@ -20,6 +20,10 @@ export default {
   components:{
     WartezimmerCard
   },
+  data() {
+    return {
+    };
+  },
   computed: {
     ...mapGetters([
       'kundenInWartezimmer',

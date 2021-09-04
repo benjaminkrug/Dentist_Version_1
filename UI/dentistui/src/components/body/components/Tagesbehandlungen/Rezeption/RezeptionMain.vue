@@ -55,6 +55,7 @@ export default {
 .calender {
   grid-column: 1;
   grid-row: 1 / span 2;
+  overflow-y: hidden;
 }
 .wartezimmer{
   grid-column: 2;

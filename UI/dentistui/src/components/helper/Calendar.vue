@@ -62,6 +62,8 @@ export default {
       extendOriginal: null,
       createEventConfirmModal: false,
     }),
+    computed: {
+    },
     methods: {
       startDrag ({ event, timed }) {
         if (event && timed) {
@@ -72,6 +74,8 @@ export default {
       },
       startTime (tms) {
         const mouse = this.toTime(tms)
+        const date = this.toDate(tms)
+        const endDate = new Date(date.getTime() + 30*60000)
 
         if (this.dragEvent && this.dragTime === null) {
           const start = this.dragEvent.start
@@ -82,8 +86,8 @@ export default {
           this.createEvent = {
             name: `Event #${this.events.length}`,
             color: this.rndElement(this.colors),
-            start: this.createStart,
-            end: this.createStart,
+            start: date,
+            end: endDate,
             timed: true,
           }
 
@@ -155,7 +159,10 @@ export default {
           : time + (roundDownTime - (time % roundDownTime))
       },
       toTime (tms) {
-        return new Date(tms.year, tms.month - 1, tms.day, tms.hour, tms.minute).getTime()
+        return this.toDate(tms).getTime()
+      },
+      toDate (tms) {
+        return new Date(tms.year, tms.month - 1, tms.day, tms.hour + 2, tms.minute)
       },
       getEventColor (event) {
         const rgb = parseInt(event.color.substring(1), 16)
@@ -203,7 +210,8 @@ export default {
       },
       refocus() {
         this.value = this.focus
-      }
+      },
+
     },
     watch: {
       focus(){
@@ -220,7 +228,6 @@ export default {
 <style scoped lang="scss">
 .Fill{
   width: 98%;
-  height: 100vh;
   margin-left: 1%;
 }
 .v-event-draggable {
@@ -256,5 +263,8 @@ export default {
   &:hover::after {
     display: block;
   }
+}
+.v-calendar-daily__scroll-area {
+  overflow-y: clip;
 }
 </style>

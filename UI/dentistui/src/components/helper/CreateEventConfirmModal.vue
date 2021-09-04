@@ -1,18 +1,21 @@
 <template>
   <div>
-    <popup class="popup" modal-id="modal-add-event" title="Patient hinzufügen" @ok="ok" @cancel="cancel" :show="show">
+    <popup class="popup" modal-id="modal-add-event" title="Termin hinzufügen" @ok="ok" @cancel="cancel" :show="show">
       <div class="addPatientPopup">
-        <input v-model="First_Name" placeholder="Vorname">
-        <input v-model="Last_Name" placeholder="Nachname">
+        <select-patient :select-patient-id="SelectPatientId" @selectedPatient="(v) => SelectPatientId = v"/>
+        <select-arzt :select-arzt-id="SelectArztId" @selectedArzt="(v) => SelectArztId = v"/>
       </div>
     </popup>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import Popup from '@/components/popups/popup.vue'
+import SelectPatient from '@/components/body/share/selects/SelectPatient.vue'
+import SelectArzt from '@/components/body/share/selects/SelectArzt.vue'
+
 export default {
   name: "CreateEvemtConfirmModal",
   props:{
@@ -23,18 +26,29 @@ export default {
     show:{
       type: Boolean,
       default: false
-    }
+    },
+
   },
   components: {
-    Popup
+    Popup,
+    SelectPatient,
+    SelectArzt
   },
   data() {
     return {
       First_Name: '',
       Last_Name: '',
+      SelectPatientId: '',
+      SelectArztId: ''
     };
   },
   computed:{
+    ...mapState([
+      'patients'
+    ]),
+    selectedPatient(){
+      return this.patients.find(x => x.id === this.SelectPatientId)
+    }
   },
   methods:{
     ...mapActions([
@@ -42,17 +56,20 @@ export default {
     ]),
     ok() {
       this.$emit('ok')
-      var date = new Date(Date.now());
       var newEvent = {
-        First_Name: '',
-        Last_Name: '',
+        First_Name: this.selectedPatient.first_Name,
+        Last_Name: this.selectedPatient.last_Name,
+        UserId: this.SelectPatientId,
+        ArztId: this.SelectArztId,
+
         // name: `Event #${this.events.length}`,
         // color: this.rndElement(this.colors),
         // start: this.createStart,
         // end: this.createStart,
-        datum: date,
+        terminDate: this.data.start,
+        status: 'ausstehend',
+        Typ_short: 'AU',
         time: '11:12:04',
-        type: 'AU'
       }
       this.addEvent(newEvent);
     },
@@ -70,13 +87,14 @@ export default {
 .addPatientPopup{
   display: flex;
   flex-direction: column;
-  height: 100px;
 }
 .addPatientPopup > *{
+  width: 65%;
+}
+input{
   margin: 3px;
   border-style: hidden;
   border-bottom: 1px solid;
-  width: 65%;
   border-radius: 0;
 }
 </style>

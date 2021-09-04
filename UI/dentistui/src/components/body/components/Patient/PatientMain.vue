@@ -26,7 +26,7 @@
               <td>{{ patient.birthday.split('T')[0] }}</td>
               <td><b-icon icon="three-dots-vertical" :id="'popover-info' + patient.id" /></td>
               <b-popover class="popover" :target="'popover-info' + patient.id" triggers="hover">
-                <b-icon icon="x-circle" @click="removePatientById(patient.id)" />
+                <b-icon icon="x-circle" @click="doDelete(patient.id)" />
               </b-popover>
             </tr>
           </tbody>
@@ -37,6 +37,11 @@
       <selected-patient-main/>
     </div>
     <add-patient-popup />
+    <confirm-modal
+      ref="confirmDialogue"
+      title="Patienten Löschen"
+      text="Wollen sie den Patienten wirklich löschen?"
+    />
   </div>
 </template>
 
@@ -44,6 +49,7 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 import SearchInput from '@/components/body/share/input/SearchInput.vue'
+import ConfirmModal from '@/components/helper/ConfirmModal.vue'
 import AddPatientPopup from './AddPatientPopup.vue'
 import SelectedPatientMain from './Selected/SelectedPatientMain.vue'
 
@@ -51,11 +57,13 @@ export default {
   name: "PatientMain",
   data() {
     return {
-      searchText:''
+      searchText:'',
+      modalShow: false,
     };
   },
   components: {
     SearchInput,
+    ConfirmModal,
     SelectedPatientMain,
     AddPatientPopup
   },
@@ -67,6 +75,12 @@ export default {
       'loadAllPatients',
       'removePatientById'
     ]),
+    async doDelete(id) {
+      const ok = await this.$refs.confirmDialogue.show();
+      if (ok) {
+        this.removePatientById(id)
+      }
+    }
   },
   mounted(){
     this.loadAllPatients();
