@@ -19,12 +19,14 @@
     },
     data() {
       return {
-        focus: '2021-09-04T11:22:06'
+        focus: '2021-09-04T11:22:06',
+        arztColors: ['#2196F3', '#A356F6', '#91A6A3']
       }
     },
     methods: {
       ...mapActions([
-        'GetAllTermineByTimeRange'
+        'GetAllTermineByTimeRange',
+        'loadAllAerzte',
       ]),
       createEvent(event) {
         console.log(event);
@@ -33,22 +35,25 @@
     computed:{
       ...mapState([
         'termine',
+        'aerzte'
       ]),
       events() {
         return this.termine.map(t => {
+          var end = t.terminDate
           return {
             timed: true,
             start: t.terminDate.getTime(),
-            end: t.terminDate.getTime() + 15,
-            color: "#2196F3",
-            name: 'benni'
+            end: end.setHours(t.terminDate.getHours() + 1),
+            color: this.arztColors[this.aerzte.findIndex(a => a.id == t.arztId)],
+            name:  t.first_Name[0] + '. ' + t.last_Name
           }
         })
-      }
+      },
     },
     mounted() {
-      const min = new Date('2012-12-17T00:00:00')
-      const max = new Date('2022-12-17T00:00:00')
+      const min =  new Date(new Date().setDate(0))
+      const max = new Date(new Date(new Date().setDate(0)).setMonth(min.getMonth() + 1))
+      this.loadAllAerzte()
       this.GetAllTermineByTimeRange({
           startDate: min,
           endDate: max

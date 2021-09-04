@@ -11,7 +11,7 @@
         Tag
       </div>
     </div>
-    <kalender-day v-if="typeId == 2"/>
+    <kalender-day v-if="typeId == 3"/>
     <kalender-week-month v-else :type="type"/>
   </div>
 </template>

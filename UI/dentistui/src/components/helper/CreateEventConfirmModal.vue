@@ -52,9 +52,10 @@ export default {
   },
   methods:{
     ...mapActions([
-      'addEvent'
+      'addEvent',
+      'GetAllTermineByTimeRange'
     ]),
-    ok() {
+    async ok() {
       this.$emit('ok')
       var newEvent = {
         First_Name: this.selectedPatient.first_Name,
@@ -71,7 +72,17 @@ export default {
         Typ_short: 'AU',
         time: '11:12:04',
       }
-      this.addEvent(newEvent);
+
+      const min =  new Date(new Date().setDate(0))
+      const max = new Date(new Date(new Date().setDate(0)).setMonth(min.getMonth() + 1))
+
+      this.addEvent(newEvent)
+      .then(() =>
+        this.GetAllTermineByTimeRange({
+            startDate: min,
+            endDate: max
+        })
+      );
     },
     cancel() {
       this.$emit('cancel')
