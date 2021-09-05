@@ -9,6 +9,13 @@
         :events="eventss"
         :event-color="getEventColor"
         :event-ripple="false"
+        :max-days="maxDays"
+        :weekdays="weekdays"
+        :first-interval="intervals.first"
+        :interval-minutes="intervals.minutes"
+        :interval-count="intervals.count"
+        :interval-height="intervals.height"
+
         @change="getEvents"
         @mousedown:event="startDrag"
         @mousedown:time="startTime"
@@ -16,16 +23,8 @@
         @mouseup:time="endDrag"
         @mouseleave.native="cancelDrag"
       >
-        <template v-slot:event="{ event, timed, eventSummary }">
-          <div
-            class="v-event-draggable"
-            v-html="eventSummary()"
-          ></div>
-          <div
-            v-if="timed"
-            class="v-event-drag-bottom"
-            @mousedown.stop="extendBottom(event)"
-          ></div>
+        <template v-slot:event="{ event}">
+          {{event.name}}
         </template>
       </v-calendar>
     </v-sheet>
@@ -61,8 +60,25 @@ export default {
       createStart: null,
       extendOriginal: null,
       createEventConfirmModal: false,
+      maxDays: 5,
+      weekdays: [1, 2, 3, 4, 5],
+      intervalsDay: {
+        first: 16,
+        minutes: 30,
+        count: 20,
+        height: 33,
+      },
+      intervalsWeek: {
+        first: 14,
+        minutes: 30,
+        count: 24,
+        height: 27,
+      }
     }),
     computed: {
+      intervals() {
+        return this.type == 'day' ? this.intervalsDay : this.intervalsWeek
+      }
     },
     methods: {
       startDrag ({ event, timed }) {
@@ -211,7 +227,12 @@ export default {
       refocus() {
         this.value = this.focus
       },
-
+      prev () {
+        this.$refs.calendar.prev()
+      },
+      next () {
+        this.$refs.calendar.next()
+      },
     },
     watch: {
       focus(){

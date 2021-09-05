@@ -1,6 +1,6 @@
   <template>
     <div class="Fill">
-      <calendar :type="type" :eventss="events" :focus="focus" @createEvent="createEvent"/>
+      <calendar ref="calendar" :type="type" :eventss="events" :focus="focus" @createEvent="createEvent"/>
     </div>
   </template>
 
@@ -20,7 +20,7 @@
     data() {
       return {
         focus: '2021-09-04T11:22:06',
-        arztColors: ['#2196F3', '#A356F6', '#91A6A3']
+        arztColors: ['#004E14', '#A356F6', '#91A6A3']
       }
     },
     methods: {
@@ -30,7 +30,13 @@
       ]),
       createEvent(event) {
         console.log(event);
-      }
+      },
+      prev () {
+        this.$refs.calendar.prev()
+      },
+      next () {
+        this.$refs.calendar.next()
+      },
     },
     computed:{
       ...mapState([
