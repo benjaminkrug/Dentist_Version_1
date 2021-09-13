@@ -2,7 +2,7 @@
   <div class="ZahnmainOverlay">
     <div/>
     <div class="Zahnmain">
-      <zahn-card type='WeisheitsZahn' :zahn-style="style[0].fuellungen" :wurzeln='3' @addFuellung="(part)=> addFuellung(part, '_11')"/>
+      <zahn-card type='WeisheitsZahn' :zahn-style="style[0].fuellungen" :wurzeln='3' position="_11" @addFuellung="(part)=> addFuellung(part, '_11')"/>
       <zahn-card type='MahlZahn' :zahn-style="style[1].fuellungen" :wurzeln='3' @addFuellung="(part)=> addFuellung(part, '_12')"/>
       <zahn-card type='MahlZahn' :zahn-style="style[2].fuellungen" :wurzeln='3' @addFuellung="(part)=> addFuellung(part, '_13')"/>
       <zahn-card type='VormahlZahn' :zahn-style="style[3].fuellungen" :wurzeln='1' @addFuellung="(part)=> addFuellung(part, '_14')"/>

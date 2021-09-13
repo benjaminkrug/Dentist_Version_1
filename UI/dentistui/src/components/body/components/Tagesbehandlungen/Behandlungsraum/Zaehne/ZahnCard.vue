@@ -12,7 +12,7 @@
         </div>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" />
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="unten-mitte" >
-          <div class="box" :style="styleUntenMitteOben" />
+          <div class="box" :style="styleUntenMitteOben" @click="AddBehandlung('UntenMitteOben')"/>
           <div class="box" :style="styleUntenMitteMitte" />
           <div class="box" :style="styleUntenMitteUnten" />
         </div>
@@ -39,6 +39,7 @@
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer />
       </div>
     </div>
+    <behandlung-selector v-if="newBehandlungData"/>
   </div>
 </template>
 
@@ -51,6 +52,7 @@
 
 import WurzelSelector from './ZahnTyp/Spezial/WurzelSelector.vue'
 import SpezialFormRound from './ZahnTyp/Spezial/SpezialFormRound0.vue'
+import BehandlungSelector from './BehandlungSelector.vue'
 
 export default {
   name: "Zahnecard",
@@ -61,7 +63,8 @@ export default {
     //MahlZahn,
     //WeisheitsZahn,
     WurzelSelector,
-    SpezialFormRound
+    SpezialFormRound,
+    BehandlungSelector
   },
   props:{
     zahnStyle: [],
@@ -77,7 +80,14 @@ export default {
       type: Boolean,
       default: false
     },
+    position:{
+      type: String,
+      default: ""
+    },
   },
+  data: () => ({
+    newBehandlungData: null
+  }),
   computed:{
     styleObenLinks(){
       let returnObject = {}
@@ -127,7 +137,10 @@ export default {
   },
   methods:{
     AddFuellung(part){
-      this.$emit("addFuellung", part)
+      this.addFuellung(part, this.position)
+    },
+    AddBehandlung(part){
+      this.newBehandlungData = {...part, ...this.position}
     },
     AddIfIsPosition(position, key, value ){
       let returnObject = {}
@@ -183,6 +196,7 @@ export default {
   border-style: solid;
   border-width: 2px;
   border-radius: 4px;
+  z-index: 3;
 }
 .mitte-mitte{
   border-radius: 4px;
@@ -199,5 +213,8 @@ export default {
 .unten-links{
 }
 .unten-rechts{
+}
+.box:hover{
+  background-color: yellow;
 }
 </style>

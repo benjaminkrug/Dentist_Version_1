@@ -1,7 +1,10 @@
 <template>
   <div class="spezial-form">
     <v-stage ref="stage" :config="stageSize">
-      <v-layer>
+      <v-layer
+        @mouseover="fill = 'yellow'"
+        @mouseleave="fill = 'white'"
+      >
         <v-line :config="lineConfig"/>
       </v-layer>
       <v-layer ref="dragLayer"></v-layer>
@@ -23,7 +26,8 @@ export default {
       stageSize: {
         width: 17,
         height:40
-      }
+      },
+      fill: 'white'
     };
   },
   computed: {
@@ -53,7 +57,7 @@ export default {
         tension: 0,
         closed: true,
         stroke: 'black',
-        fill: 'white',
+        fill: this.fill,
       }
     }
   }
@@ -62,6 +66,9 @@ export default {
 </script>
 
 <style scoped>
+.test:hover{
+  background-color: yellow;
+}
 .spezial-form{
   display: flex;
   justify-content: center;
@@ -89,8 +96,5 @@ export default {
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
   border-bottom: 20px solid green;
-}
-
-.box{
 }
 </style>
