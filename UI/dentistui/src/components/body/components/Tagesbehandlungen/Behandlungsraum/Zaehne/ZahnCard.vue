@@ -4,19 +4,19 @@
       <div class="ZahnCardAufbau">
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" />
         <div />
-        <div class="box mitte-mitte" :style="styleMitteMitte" @click="AddFuellung('mitte-mitte')"/>
+        <div class="box mitte-mitte" :style="styleMitteMitte" @click="AddBehandlung('mitte-mitte')" />
         <div />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" />
-        <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" class="unten-mitte" >
-          <spezial-form-round />
+        <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" class="unten-mitte">
+          <spezial-form-round @click="AddBehandlung('unten-mitte')"/>
         </div>
-        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" />
+        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" @click="AddBehandlung('unten-links')"/>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="unten-mitte" >
           <div class="box" :style="styleUntenMitteOben" @click="AddBehandlung('UntenMitteOben')"/>
-          <div class="box" :style="styleUntenMitteMitte" />
-          <div class="box" :style="styleUntenMitteUnten" />
+          <div class="box" :style="styleUntenMitteMitte" @click="AddBehandlung('UntenMitteMitte')"/>
+          <div class="box" :style="styleUntenMitteUnten" @click="AddBehandlung('UntenMitteUnten')"/>
         </div>
-        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-rechts" :style="styleUntenRechts" />
+        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-rechts" :style="styleUntenRechts" @click="AddBehandlung('unten-rechts')"/>
       </div>
     </div>
     <div v-else>
@@ -39,7 +39,7 @@
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer />
       </div>
     </div>
-    <behandlung-selector v-if="newBehandlungData"/>
+    <behandlung-selector v-if="newBehandlungData" :data="newBehandlungData" @close="newBehandlungData = null"/>
   </div>
 </template>
 
@@ -140,7 +140,7 @@ export default {
       this.addFuellung(part, this.position)
     },
     AddBehandlung(part){
-      this.newBehandlungData = {...part, ...this.position}
+      this.newBehandlungData = {part: part, position: this.position}
     },
     AddIfIsPosition(position, key, value ){
       let returnObject = {}

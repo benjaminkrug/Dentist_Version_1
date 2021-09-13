@@ -41,10 +41,24 @@ export default {
     }
   },
   mounted(){
+    if(this.modalId){
+      this.$bvModal.show(this.modalId)
+    }
   }
 
 }
 </script>
 
 <style scoped>
+.popup{
+  display: flex;
+  flex-direction: column;
+}
+.popup > *{
+  margin: 3px;
+  border-style: hidden;
+  border-bottom: 1px solid;
+  width: 65%;
+  border-radius: 0;
+}
 </style>
