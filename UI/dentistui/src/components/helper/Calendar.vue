@@ -22,8 +22,9 @@
         @mousemove:time="mouseMove"
         @mouseup:time="endDrag"
         @mouseleave.native="cancelDrag"
+        @click:date="changeDate"
       >
-        <template v-slot:event="{ event}">
+        <template v-slot:event="{event}">
           {{event.name}}
         </template>
       </v-calendar>
@@ -81,6 +82,9 @@ export default {
       }
     },
     methods: {
+      changeDate(value){
+        this.value = value.date
+      },
       startDrag ({ event, timed }) {
         if (event && timed) {
           this.dragEvent = event

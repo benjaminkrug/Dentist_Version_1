@@ -69,8 +69,7 @@ export default {
         // end: this.createStart,
         terminDate: this.data.start,
         status: 'ausstehend',
-        Typ_short: 'AU',
-        time: '11:12:04',
+        Typ_short: 'AU'
       }
 
       const min =  new Date(new Date().setDate(0))

@@ -5,14 +5,14 @@
       <template #button-content>
         Raum wechseln
       </template>
-      <b-dropdown-item href="/Tagesbehandlungen/Behandlungsraum/1">Raum 1</b-dropdown-item>
+      <b-dropdown-item @click="raumId = 1">Raum 1</b-dropdown-item>
       <b-dropdown-item @click="raumId = 2">Raum 2</b-dropdown-item>
     </b-dropdown>
     <h1>Behandlungsraum: {{ raumId }}</h1>
     <div v-if="raumData != null" class="behandlungsraumStyle">
       <zaehne-main :zahn-list-fuellung="zahnListFuellung" :gebiss="gebiss"/>
     </div>
-    <div v-else class="behandlungsraumStyle">
+    <div v-else>
       <select-patient />
     </div>
     {{ zahnListFuellung }}
