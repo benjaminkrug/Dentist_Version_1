@@ -16,20 +16,20 @@
         :interval-count="intervals.count"
         :interval-height="intervals.height"
 
-        @change="getEvents"
         @mousedown:event="startDrag"
         @mousedown:time="startTime"
         @mousemove:time="mouseMove"
         @mouseup:time="endDrag"
         @mouseleave.native="cancelDrag"
         @click:date="changeDate"
+        @click:day="changeDay"
       >
         <template v-slot:event="{event}">
           {{event.name}}
         </template>
       </v-calendar>
     </v-sheet>
-    <create-event-confirm-modal :data="createEvent" :show="createEventConfirmModal" @ok="createEventConfirmModal = false" @cancel="createEventConfirmModal = false"/>
+    <create-event-confirm-modal :data="createEvent" :show="createEventConfirmModal" @ok="closeConfirmModal" @cancel="closeConfirmModal"/>
   </div>
 </template>
 
@@ -82,6 +82,22 @@ export default {
       }
     },
     methods: {
+      closeConfirmModal(){
+        this.createEvent = null;
+        this.createEventConfirmModal = false;
+      },
+      changeDay(value){
+        if(this.type != 'month') return;
+        this.createEvent = {
+          name: `Event #${this.events.length}`,
+          color: this.rndElement(this.colors),
+          start: null,
+          end: null,
+          date: value.date,
+          timed: true,
+        }
+        this.createEventConfirmModal = true;
+      },
       changeDate(value){
         this.value = value.date
       },
@@ -92,26 +108,28 @@ export default {
           this.extendOriginal = null
         }
       },
+      isClickOverEvent(tms) {
+        const t = this.toTimeWithOffset(tms)
+        console.log(this.events.find(x => x.start < t && x.end > t) && this.events.find(x => x.start < t && x.end > t) != null);
+        console.log(t);
+        return this.events.find(x => x.start < t && x.end > t) && this.events.find(x => x.start < t && x.end > t) != null;
+      },
       startTime (tms) {
+        if(this.isClickOverEvent(tms)){
+          return
+        }
         const mouse = this.toTime(tms)
         const date = this.toDate(tms)
         const endDate = new Date(date.getTime() + 30*60000)
 
-        if (this.dragEvent && this.dragTime === null) {
-          const start = this.dragEvent.start
 
-          this.dragTime = mouse - start
-        } else {
-          this.createStart = this.roundTime(mouse)
-          this.createEvent = {
-            name: `Event #${this.events.length}`,
-            color: this.rndElement(this.colors),
-            start: date,
-            end: endDate,
-            timed: true,
-          }
-
-          this.events.push(this.createEvent)
+        this.createStart = this.roundTime(mouse)
+        this.createEvent = {
+          name: `Event #${this.events.length}`,
+          color: this.rndElement(this.colors),
+          start: date,
+          end: endDate,
+          timed: true,
         }
       },
       extendBottom (event) {
@@ -137,8 +155,8 @@ export default {
           const min = Math.min(mouseRounded, this.createStart)
           const max = Math.max(mouseRounded, this.createStart)
 
-          this.createEvent.start = min
-          this.createEvent.end = max
+          this.createEvent.start = new Date(this.toTime(min))
+          this.createEvent.end = new Date(this.toTime(max))
         }
       },
       endDrag () {
@@ -183,6 +201,12 @@ export default {
       },
       toDate (tms) {
         return new Date(tms.year, tms.month - 1, tms.day, tms.hour + 2, tms.minute)
+      },
+      toTimeWithOffset (tms) {
+        return this.toDateWithOffset(tms).getTime()
+      },
+      toDateWithOffset (tms) {
+        return new Date(tms.year, tms.month - 1, tms.day, tms.hour, tms.minute)
       },
       getEventColor (event) {
         const rgb = parseInt(event.color.substring(1), 16)
@@ -241,6 +265,12 @@ export default {
     watch: {
       focus(){
         this.refocus()
+      },
+      value(v){
+        this.$emit("refocus", v)
+      },
+      eventss(v){
+        this.events = v;
       }
     },
     mounted() {

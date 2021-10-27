@@ -41,6 +41,8 @@ export default {
     cancel() {
       console.log("cancel")
     }
+  },
+  mounted() {
   }
 }
 </script>

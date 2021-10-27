@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import SelectPatient from '@/components/body/share/selects/SelectPatient.vue'
 import SelectArzt from '@/components/body/share/selects/SelectArzt.vue'
 
 export default {
-  name: "Zahnecard",
+  name: "RaumBelegen",
   components: {
     SelectPatient,
     SelectArzt
@@ -34,22 +34,32 @@ export default {
     };
   },
   computed: {
+    ...mapState([
+      'patients',
+      'aerzte'
+    ]),
     propsSelected () {
       return this.SelectPatientId != '' && this.SelectArztId != ''
+    },
+    selectedPatient(){
+      return this.patients.filter(p => p.id === this.SelectPatientId)[0]
+    },
+    selectedArzt(){
+      return this.aerzte.filter(a => a.id === this.SelectArztId)[0]
     }
   },
   methods: {
     ...mapActions([
       'addEvent',
     ]),
-    belegeRaum() {
+    async belegeRaum() {
       var date = new Date();
-      var terminDate = ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
-        ("00" + date.getDate()).slice(-2) + "/" +
-        date.getFullYear() + " " +
+      var terminDate = (date.getFullYear()) + "-" +
+        ("00" + date.getDate()).slice(-2) + "-" +
+        ("00" + (date.getMonth() + 1)).slice(-2) + "T" +
         ("00" + date.getHours()).slice(-2) + ":" +
         ("00" + date.getMinutes()).slice(-2) + ":" +
-        ("00" + date.getSeconds()).slice(-2);
+        ("00" + date.getSeconds()).slice(-2) + ".000Z";
 
       var newEvent = {
         First_Name: this.selectedPatient.first_Name,

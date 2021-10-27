@@ -5,7 +5,6 @@
         <h3>Behandlungsraum Frei</h3>
       </div>
     </popup>
-    hi
   </div>
 </template>
 
@@ -18,7 +17,8 @@ export default {
     Popup
   },
   props:{
-    data: {}
+    part: String,
+    position: String
   },
   data() {
     return {
@@ -27,8 +27,11 @@ export default {
   },
   computed: {
     id(){
-      return 'modal-' + this.data.part + '-' + this.data.position;
+      const value = 'modal-' + this.part + '-' + this.position;
+      return value
     }
+  },
+  watch: {
   },
   methods: {
   }

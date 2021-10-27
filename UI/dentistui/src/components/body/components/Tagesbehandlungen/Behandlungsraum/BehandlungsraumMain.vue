@@ -13,7 +13,7 @@
       <zaehne-main :zahn-list-fuellung="zahnListFuellung" :gebiss="gebiss"/>
     </div>
     <div v-else>
-      <select-patient />
+      <raum-belegen />
     </div>
     {{ zahnListFuellung }}
   </div>
@@ -23,12 +23,12 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 import ZaehneMain from './Zaehne/ZaehneMain.vue'
-import SelectPatient from './SelectPatient.vue'
+import RaumBelegen from './RaumBelegen.vue'
 export default {
   name: "Behandlungsraum",
   components: {
     ZaehneMain,
-    SelectPatient
+    RaumBelegen
   },
   data() {
     return {

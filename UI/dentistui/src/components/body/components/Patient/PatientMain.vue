@@ -5,9 +5,7 @@
       Patientensuche
       <hr />
       <div class="patient-suche">
-        <b-icon icon="plus-circle" variant="success" v-b-modal.modal-add-patient >
-          <add-patient-popup />
-        </b-icon>
+        <b-icon icon="plus-circle" variant="success" v-b-modal.modal-add-patient />
         <Search-input :search-text="searchText" @search="(value) =>searchText = value"/>
       </div>
       <div class="patient-table">

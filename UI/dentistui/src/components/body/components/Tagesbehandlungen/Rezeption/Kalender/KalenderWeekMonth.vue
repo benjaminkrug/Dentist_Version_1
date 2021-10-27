@@ -1,6 +1,6 @@
   <template>
     <div class="Fill" v-if="focus!=''">
-      <calendar ref="calendar" :type="type" :eventss="events" :focus="focus" @createEvent="createEvent"/>
+      <calendar ref="calendar" :type="type" :eventss="events" :focus="focus" @refocus="(v) => this.focus=v" @createEvent="createEvent"/>
     </div>
   </template>
 
@@ -20,6 +20,8 @@
     data() {
       return {
         focus: '',
+        focus_start: '',
+        focus_end: '',
         arztColors: ['#004E14', '#A356F6', '#91A6A3']
       }
     },
@@ -37,6 +39,15 @@
       next () {
         this.$refs.calendar.next()
       },
+      refocus(date){
+        this.focus_start =  new Date(new Date(date).setDate(-6)).toISOString().slice(0, 10);
+        this.focus_end = new Date(new Date(date).setDate(39)).toISOString().slice(0, 10);
+        this.loadAllAerzte()
+        this.GetAllTermineByTimeRange({
+            startDate: this.focus_start,
+            endDate: this.focus_end
+        });
+      }
     },
     computed:{
       ...mapState([
@@ -53,32 +64,16 @@
             name:  t.first_Name[0] + '. ' + t.last_Name
           }
         })
-      },
+      }
+    },
+    watch: {
+      focus(v){
+        this.refocus(v)
+      }
     },
     mounted() {
-      var date = new Date();
-      var dateStr =
-        ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
-        ("00" + date.getDate()).slice(-2) + "/" +
-        date.getFullYear() + " " +
-        ("00" + date.getHours()).slice(-2) + ":" +
-        ("00" + date.getMinutes()).slice(-2) + ":" +
-        ("00" + date.getSeconds()).slice(-2);
-      this.focus = dateStr
-      const min =  new Date(new Date().setDate(0))
-      const max = new Date(new Date(new Date().setDate(0)).setMonth(min.getMonth() + 1))
-      this.loadAllAerzte()
-      this.GetAllTermineByTimeRange({
-          startDate: min,
-          endDate: max
-      });
-      // this.events.push({
-      //     timed: true,
-      //     start: new Date('2021-08-12T00:04:00').getTime(),
-      //     end: new Date('2021-08-12T00:05:00').getTime(),
-      //     color: "#2196F3",
-      //     name: 'benni'
-      // })
+      var date = new Date().toISOString().slice(0, 10)
+      this.focus = date
     }
   }
   </script>

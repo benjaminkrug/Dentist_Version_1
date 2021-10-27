@@ -1,9 +1,6 @@
 ﻿namespace ClassLib.DTO
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
-
 
     public class TermineTableDto
     {
@@ -19,5 +16,8 @@
         public string Raum { get; set; }
         public string Typ_short { get; set; }
         public string Typ_long { get; set; }
+        public TermineTableDto()
+        {
+        }
     }
 }

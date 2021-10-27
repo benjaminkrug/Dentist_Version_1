@@ -39,7 +39,7 @@
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer />
       </div>
     </div>
-    <behandlung-selector v-if="newBehandlungData" :data="newBehandlungData" @close="newBehandlungData = null"/>
+    <behandlung-selector :part="newBehandlungData.part" :position="newBehandlungData.position" @close="newBehandlungData = null"/>
   </div>
 </template>
 
@@ -86,7 +86,10 @@ export default {
     },
   },
   data: () => ({
-    newBehandlungData: null
+    newBehandlungData: {
+      part: '',
+      position: ''
+    }
   }),
   computed:{
     styleObenLinks(){
@@ -140,6 +143,8 @@ export default {
       this.addFuellung(part, this.position)
     },
     AddBehandlung(part){
+      const value = 'modal-' + part + '-' + this.position;
+      this.$bvModal.show(value)
       this.newBehandlungData = {part: part, position: this.position}
     },
     AddIfIsPosition(position, key, value ){
