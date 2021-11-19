@@ -25,7 +25,7 @@
         @click:day="changeDay"
       >
         <template v-slot:event="{event}">
-          {{event.name}}
+          <KalenderCard :infos="event" />
         </template>
       </v-calendar>
     </v-sheet>
@@ -36,6 +36,7 @@
 <script>
 
 import CreateEventConfirmModal from './CreateEventConfirmModal.vue'
+import KalenderCard from './KalenderCard.vue'
 
 export default {
     name: "Calendar",
@@ -48,13 +49,13 @@ export default {
       },
     },
     components: {
-      CreateEventConfirmModal
+      CreateEventConfirmModal,
+      KalenderCard
     },
     data: () => ({
       value: '',
       events: [],
       colors: ['#2196F3', '#3F51B5', '#673AB7', '#00BCD4', '#4CAF50', '#FF9800', '#757575'],
-      names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
       dragEvent: null,
       dragStart: null,
       createEvent: null,
@@ -73,7 +74,7 @@ export default {
         first: 14,
         minutes: 30,
         count: 24,
-        height: 27,
+        height: 33,
       }
     }),
     computed: {
@@ -87,6 +88,7 @@ export default {
         this.createEventConfirmModal = false;
       },
       changeDay(value){
+        console.log(value)
         if(this.type != 'month') return;
         this.createEvent = {
           name: `Event #${this.events.length}`,
@@ -102,6 +104,7 @@ export default {
         this.value = value.date
       },
       startDrag ({ event, timed }) {
+
         if (event && timed) {
           this.dragEvent = event
           this.dragTime = null
@@ -110,8 +113,6 @@ export default {
       },
       isClickOverEvent(tms) {
         const t = this.toTimeWithOffset(tms)
-        console.log(this.events.find(x => x.start < t && x.end > t) && this.events.find(x => x.start < t && x.end > t) != null);
-        console.log(t);
         return this.events.find(x => x.start < t && x.end > t) && this.events.find(x => x.start < t && x.end > t) != null;
       },
       startTime (tms) {
@@ -220,32 +221,6 @@ export default {
             ? `rgba(${r}, ${g}, ${b}, 0.7)`
             : event.color
       },
-      getEvents ({ start, end }) {
-        const events = []
-
-        const min = new Date(`${start.date}T00:00:00`).getTime()
-        const max = new Date(`${end.date}T23:59:59`).getTime()
-        const days = (max - min) / 86400000
-        const eventCount = this.rnd(days, days + 45)
-
-        for (let i = 0; i < eventCount; i++) {
-          const timed = this.rnd(0, 3) !== 0
-          const firstTimestamp = this.rnd(min, max)
-          const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000
-          const start = firstTimestamp - (firstTimestamp % 900000)
-          const end = start + secondTimestamp
-
-          events.push({
-            name: this.rndElement(this.names),
-            color: this.rndElement(this.colors),
-            start,
-            end,
-            timed,
-          })
-        }
-
-        this.events = events
-      },
       rnd (a, b) {
         return Math.floor((b - a + 1) * Math.random()) + a
       },
@@ -318,8 +293,5 @@ export default {
   &:hover::after {
     display: block;
   }
-}
-.v-calendar-daily__scroll-area {
-  overflow-y: clip;
 }
 </style>

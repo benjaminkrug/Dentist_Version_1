@@ -1,10 +1,8 @@
 <template>
   <div class="wartezimmer">
     <h4>Wartezimmer</h4>
-    <div class="wartezimmergrid">
-      <div v-for="kunde in kundenInWartezimmer" :key="kunde.id">
-        <wartezimmer-card :infos="kunde" />
-      </div>
+    <div v-for="kunde in kundenInWartezimmer" :key="kunde.id">
+      <wartezimmer-card :infos="kunde" />
     </div>
   </div>
 </template>
@@ -33,13 +31,4 @@ export default {
 </script>
 
 <style scoped>
-.wartezimmer{
-
-}
-.wartezimmergrid{
-  display: grid;
-  grid-template-columns: 50% 50%;
-  text-align: center;
-
-}
 </style>

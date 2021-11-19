@@ -30,10 +30,11 @@
             var patients = _dp.GetAll<UserInBehandlungsraumDbModel>("getPatientsInBehandlungsraum.sql", null, CommandType.Text);
             var gebiss = _dp.GetAll<GebissDbModel>("getGebissForPatientIds.sql", new DynamicParameters(new { ids = patients.Select(x => x.UserId).ToList() }), CommandType.Text);
             var zaehne = _dp.GetAll<TasksInformationDbModel>("getZaehneStateById.sql", new DynamicParameters(new { id = gebiss[0]._11 }), CommandType.Text);
-            var dic = patients.Select(x => {
+            var dic = patients?.Select(x =>
+            {
                 var list = new List<ZahnDto>();
                 var hisGebiss = gebiss.FirstOrDefault(p => p.UserId == x.UserId);
-                zaehne.Where(x => x.Id == hisGebiss._11).ToList().ForEach(z =>
+                zaehne.Where(x => x.Id == hisGebiss?._11).ToList().ForEach(z =>
                 {
                     list.Add(new ZahnDto
                     {
@@ -43,11 +44,14 @@
                         Position = z.Position
                     });
                 });
+                var g = gebiss.Find(gebiss => gebiss.UserId == x.UserId);
                 return new BehandlungsRaumMainDto()
                 {
                     UserId = x.UserId,
                     Raum = x.Raum,
-                    Gebiss = new GebissDto(gebiss.Find(gebiss => gebiss.UserId == x.UserId)),
+                    Gebiss = g != null ?
+                        new GebissDto(g)
+                        : null,
                     ZahnList = list
                 };
             }).ToList();

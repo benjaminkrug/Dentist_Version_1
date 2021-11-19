@@ -1,5 +1,12 @@
   <template>
-    <div class="Fill" v-if="focus!=''">
+    <div v-if="focus!=''">
+      <div class="WeekMonth" >
+        <div class="WeekMonth"  v-for="a in colorByAerzte" :key="a.arztName" >
+          <div class="StatusColor" :style="'background-color:' + a.color" >
+          </div>
+          {{ a.arztName }}
+        </div>
+      </div>
       <calendar ref="calendar" :type="type" :eventss="events" :focus="focus" @refocus="(v) => this.focus=v" @createEvent="createEvent"/>
     </div>
   </template>
@@ -57,6 +64,7 @@
       events() {
         return this.termine.map(t => {
           return {
+            ...t,
             timed: true,
             start: t.terminDate.getTime(),
             end: t.terminDate.getTime() + 2000000,
@@ -64,6 +72,17 @@
             name:  t.first_Name[0] + '. ' + t.last_Name
           }
         })
+      },
+      colorByAerzte() {
+        console.log(this.aerzte)
+        if(this.aerzte.length == 0) return
+
+        return this.aerzte.map((a, i) =>{
+        return {
+            color: this.arztColors[i],
+            i:i,
+            arztName: a.first_Name + ' ' + a.last_Name
+        }});
       }
     },
     watch: {
@@ -79,4 +98,13 @@
   </script>
 
   <style scoped>
+  .WeekMonth{
+    display: flex;
+    justify-content: space-around;
+  }
+  .StatusColor{
+    width: 10px;
+    height: 20px;
+    margin-right: 5px;
+  }
   </style>

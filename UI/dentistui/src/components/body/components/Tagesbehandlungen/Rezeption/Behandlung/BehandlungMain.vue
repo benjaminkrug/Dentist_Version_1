@@ -1,10 +1,8 @@
 <template>
   <div class="behandlung">
     <h4>In Behandlung</h4>
-    <div class="behandlunggrid">
-      <div v-for="kunde in kundenInBehandlung" :key="kunde.id">
-        <behandlung-card :infos="kunde" />
-      </div>
+    <div v-for="kunde in kundenInBehandlung" :key="kunde.id">
+      <behandlung-card :infos="kunde" />
     </div>
   </div>
 </template>
@@ -29,13 +27,4 @@ export default {
 </script>
 
 <style scoped>
-.behandlung{
-
-}
-.behandlunggrid{
-  display: grid;
-  grid-template-columns: 50% 50%;
-  text-align: center;
-
-}
 </style>

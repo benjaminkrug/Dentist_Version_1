@@ -2,13 +2,14 @@
   <div class="HeaderStyle">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Rezeption</a>
+        </li>
         <b-nav-item-dropdown href="/Tagesbehandlungen">
           <template #button-content>
             Tagesbehandlungen
           </template>
-          <b-dropdown-item href="/Tagesbehandlungen/Rezeption">Rezeption</b-dropdown-item>
           <b-dropdown-item href="/Tagesbehandlungen/Behandlungsraum">Behandlungsraum</b-dropdown-item>
-          <b-dropdown-item href="/Tagesbehandlungen/Terminvereinbarung">Terminvereinbarung</b-dropdown-item>
         </b-nav-item-dropdown>
         <li class="nav-item">
           <a class="nav-link" href="/Patient">Patient</a>

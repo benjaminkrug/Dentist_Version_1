@@ -13,7 +13,7 @@
       <zaehne-main :zahn-list-fuellung="zahnListFuellung" :gebiss="gebiss"/>
     </div>
     <div v-else>
-      <raum-belegen />
+      <raum-belegen :raum-id="raumId"/>
     </div>
     {{ zahnListFuellung }}
   </div>
@@ -74,12 +74,15 @@ export default {
     raumId(val) {
       this.loadPatientsBehandlungsRaumMain(val);
     },
-    behandlungsraumData() {
-      if(this.behandlungsraumData && this.behandlungsraumData.length === 1){
-        this.raumData = this.behandlungsraumData[0];
-      }
-      else {
-        this.raumData = null;
+    behandlungsraumData: {
+      deep: true,
+      handler() {
+        if(this.behandlungsraumData && this.behandlungsraumData.length === 1){
+          this.raumData = this.behandlungsraumData[0];
+        }
+        else {
+          this.raumData = null;
+        }
       }
     }
   }

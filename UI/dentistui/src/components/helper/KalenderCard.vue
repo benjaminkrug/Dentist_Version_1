@@ -1,12 +1,14 @@
 <template>
-  <div class="KalenderCardStyle" >
-    <div v-if="!cardOpen" class="ClosedCardStyle" @mouseover="cardHover = true" @mouseleave="cardHover = false" >
+  <div class="KalenderCardStyle"  @mouseover="cardHover = true" @mouseleave="cardHover = false">
+    <div v-if="!cardOpen" class="ClosedCardStyle">
       <div class="StatusColor" :style="'background-color:' + CardColor">
       </div>
       {{infos.first_Name[0]}}.{{infos.last_Name}} ({{ infos.typ_short }})
-      <div v-if="cardHover">
-        hi
-      </div>
+    </div>
+    <div v-if="cardHover" class="Actions">
+      <b-icon v-if="infos.status == 'ausstehend'" icon="arrow90deg-right" variant="success" @click="moveWartezimmer"></b-icon>
+      <b-icon icon="info-circle" @click="showPatient(infos.userId)"></b-icon>
+      <b-icon v-if="infos.status == 'ausstehend'" icon="x-circle" variant="danger"></b-icon>
     </div>
     <div v-if="cardOpen" class="Card">
       <div class="CardStyle" @click="toggleCard">
@@ -29,7 +31,7 @@
           {{infos.typ_long}}
         </div>
       </div>
-      <div class="Actions">
+      <div class="Actions borderTop">
         <b-icon v-if="infos.status == 'ausstehend'" icon="arrow90deg-right" variant="success" @click="moveWartezimmer"></b-icon>
         <b-icon icon="info-circle" @click="showPatient(infos.userId)"></b-icon>
         <b-icon v-if="infos.status == 'ausstehend'" icon="x-circle" variant="danger"></b-icon>
@@ -100,7 +102,9 @@ export default {
 
 <style scoped>
 .KalenderCardStyle{
-
+  display:flex;
+  flex-direction: column;
+  height: 100%;
 }
 .Card{
   position: fixed;
@@ -124,16 +128,21 @@ export default {
 .Actions{
   grid-column: 1/ span 2;
   grid-row: 3;
-  border-top: beige;
-  border-top-style: ridge;
 }
 .Actions > svg{
   margin-right: 10px;
   margin-left: 10px;
 }
+.borderTop{
+  border-top: beige;
+  border-top-style: ridge;
+}
 .StatusColor{
   width: 4px;
   height: 14px;
   margin-right: 5px;
+}
+.buttons{
+
 }
 </style>

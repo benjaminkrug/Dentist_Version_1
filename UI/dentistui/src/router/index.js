@@ -9,7 +9,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '', component: () => import('../components/body/components/BodyMain.vue')
+      path: '', component: () => import('../components/body/components/Tagesbehandlungen/Rezeption/RezeptionMain.vue')
     },
     {
       path: '/Tagesbehandlungen',
@@ -21,27 +21,12 @@ const router = new Router({
           path: 'Behandlungsraum',
           component: () => import('../components/body/components/Tagesbehandlungen/Behandlungsraum/BehandlungsraumMain.vue'),
           props: true
-        },
-          {
-            path: 'Terminvereinbarung',
-            component: () => import('../components/body/components/Tagesbehandlungen/Terminvereinbarung/TerminvereinbarungMain.vue'),
-            props: true
-          },
-        {
-          path: 'Rezeption',
-          component: () => import('../components/body/components/Tagesbehandlungen/Rezeption/RezeptionMain.vue')
         }
       ]
 
     },
     {
       path: '/Patient', component: () => import('../components/body/components/Patient/PatientMain.vue')
-    },
-    {
-      path: '/Wartezimmer', component: () => import('../components/body/components/Wartezimmer/WartezimmerMain.vue')
-    },
-    {
-      path: '/Rechnung', component: () => import('../components/body/components/Rechnung/RechnungMain.vue')
     },
     {
       path: '/Abrechnung', component: () => import('../components/body/components/Abrechnung/AbrechnungMain.vue')

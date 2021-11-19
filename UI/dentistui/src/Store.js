@@ -128,10 +128,16 @@ export default new Vuex.Store({
   },
   getters:{
     kundenInWartezimmer: state => {
-      return state.termine.filter(termin => termin.status === 'wartezimmer')
+      return state.termine.filter(termin => termin.status === 'wartezimmer' && termin.terminDate.toDateString() == new Date().toDateString())
+    },
+    kundenInWartezimmerCount: (state, getters) => {
+      return getters.kundenInWartezimmer.length
     },
     kundenInBehandlung: state => {
-      return state.termine.filter(termin => termin.status === 'inBehandlung')
+      return state.termine.filter(termin => termin.status === 'inBehandlung' && termin.terminDate.toDateString() == new Date().toDateString())
+    },
+    kundenInBehandlungCount: (state, getters) => {
+      return getters.kundenInBehandlung.length
     },
     selectedPatient: state => {
       return state.patients.filter(p => p.id === state.selectedPatientId)[0]

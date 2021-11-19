@@ -26,6 +26,7 @@ export default {
     SelectArzt
   },
   props:{
+    raumId: Number
   },
   data() {
     return {
@@ -55,11 +56,11 @@ export default {
     async belegeRaum() {
       var date = new Date();
       var terminDate = (date.getFullYear()) + "-" +
-        ("00" + date.getDate()).slice(-2) + "-" +
-        ("00" + (date.getMonth() + 1)).slice(-2) + "T" +
+        ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+        ("00" + date.getDate()).slice(-2) + "T" +
         ("00" + date.getHours()).slice(-2) + ":" +
         ("00" + date.getMinutes()).slice(-2) + ":" +
-        ("00" + date.getSeconds()).slice(-2) + ".000Z";
+        ("00" + date.getSeconds()).slice(-2);
 
       var newEvent = {
         First_Name: this.selectedPatient.first_Name,
@@ -72,8 +73,9 @@ export default {
         // start: this.createStart,
         // end: this.createStart,
         terminDate: terminDate,
-        status: 'ausstehend',
-        Typ_short: 'AU'
+        status: 'inBehandlung',
+        Typ_short: 'AU',
+        raum: String(this.raumId)
       }
 
       this.addEvent(newEvent)
