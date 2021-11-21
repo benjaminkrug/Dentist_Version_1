@@ -1,9 +1,9 @@
 <template>
   <div class="wurzel-three">
     <div />
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-links')"/>
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-mitte')"/>
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-rechts')"/>
   </div>
 </template>
 

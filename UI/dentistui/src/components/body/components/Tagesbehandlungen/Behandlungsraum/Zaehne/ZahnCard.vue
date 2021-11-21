@@ -2,13 +2,13 @@
   <div>
     <div v-if="!isUnterKiefer">
       <div class="ZahnCardAufbau">
-        <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" />
+        <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" @AddBehandlung="(value) => AddBehandlung(value)"/>
         <div />
         <div class="box mitte-mitte" :style="styleMitteMitte" @click="AddBehandlung('mitte-mitte')" />
         <div />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" class="unten-mitte">
-          <spezial-form-round @click="AddBehandlung('unten-mitte')"/>
+          <spezial-form-round @AddBehandlung="(value) => AddBehandlung(value)"/>
         </div>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" @click="AddBehandlung('unten-links')"/>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="unten-mitte" >
@@ -36,10 +36,10 @@
         <div />
         <div class="box mitte-mitte" :style="styleMitteMitte" />
         <div />
-        <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer />
+        <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer @AddBehandlung="(value) => AddBehandlung(value)"/>
       </div>
     </div>
-    <behandlung-selector :part="newBehandlungData.part" :position="newBehandlungData.position" @close="newBehandlungData = null"/>
+    <behandlung-selector v-if="newBehandlungData != null" :part="newBehandlungData.part" :position="newBehandlungData.position" @close="ResetNewBehandlungData()"/>
   </div>
 </template>
 
@@ -86,10 +86,7 @@ export default {
     },
   },
   data: () => ({
-    newBehandlungData: {
-      part: '',
-      position: ''
-    }
+    newBehandlungData: null
   }),
   computed:{
     styleObenLinks(){
@@ -142,10 +139,14 @@ export default {
     AddFuellung(part){
       this.addFuellung(part, this.position)
     },
-    AddBehandlung(part){
+    async AddBehandlung(part){
       const value = 'modal-' + part + '-' + this.position;
-      this.$bvModal.show(value)
       this.newBehandlungData = {part: part, position: this.position}
+      await this.$nextTick();
+      this.$bvModal.show(value)
+    },
+    ZahnSelected() {
+      this.$emit('setSelecedZahn', this.position)
     },
     AddIfIsPosition(position, key, value ){
       let returnObject = {}
@@ -153,8 +154,17 @@ export default {
          returnObject[key] = value
       }
       return returnObject;
+    },
+    ResetNewBehandlungData() {
+      this.newBehandlungData= {
+        part: '',
+        position: this.position
+      }
     }
-  }
+  },
+  created() {
+    this.ResetNewBehandlungData()
+  },
   //<eck-zahn v-if="type === 'EckZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
   //<vormahl-zahn v-if="type === 'VormahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
   //<mahl-zahn v-if="type === 'MahlZahn'" :zahn-style="zahnStyle" :wurzeln="wurzeln" :isUnterKiefer="isUnterKiefer" />
@@ -166,10 +176,6 @@ export default {
 
 <style scoped>
 .ZahnCard{
-}
-.zzz{
-  width: 100%;
-  height: 100%;
 }
 .ZahnCardAufbau{
   width: 80px;

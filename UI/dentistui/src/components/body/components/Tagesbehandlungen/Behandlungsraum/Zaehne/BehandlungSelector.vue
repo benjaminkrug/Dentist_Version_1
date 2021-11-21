@@ -2,7 +2,8 @@
   <div>
     <popup class="popup" :modal-id="id" title="Termin hinzufügen" @ok="$emit('close')" @cancel="$emit('close')" :show="show" >
       <div class="addPatientPopup">
-        <h3>Behandlungsraum Frei</h3>
+        <h3>Behandlung Auswählen</h3>
+        {{ id }}
       </div>
     </popup>
   </div>

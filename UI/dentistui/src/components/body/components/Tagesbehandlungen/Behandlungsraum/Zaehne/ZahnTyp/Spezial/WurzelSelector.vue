@@ -1,8 +1,8 @@
 <template>
   <div class="wurzel-selector"  :style="styleIsUnterkiefer">
-    <wurzel-one v-if="wurzeln === 1"  :isUnterKiefer="isUnterKiefer" />
-    <wurzel-two v-if="wurzeln === 2"  :isUnterKiefer="isUnterKiefer" />
-    <wurzel-three v-if="wurzeln === 3"  :isUnterKiefer="isUnterKiefer" />
+    <wurzel-one v-if="wurzeln === 1"  :isUnterKiefer="isUnterKiefer" @AddBehandlung="(value) => $emit('AddBehandlung', value)"/>
+    <wurzel-two v-if="wurzeln === 2"  :isUnterKiefer="isUnterKiefer" @AddBehandlung="(value) => $emit('AddBehandlung', value)"/>
+    <wurzel-three v-if="wurzeln === 3"  :isUnterKiefer="isUnterKiefer" @AddBehandlung="(value) => $emit('AddBehandlung', value)"/>
   </div>
 </template>
 

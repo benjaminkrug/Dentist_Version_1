@@ -29,6 +29,8 @@
         {
             var patients = _dp.GetAll<UserInBehandlungsraumDbModel>("getPatientsInBehandlungsraum.sql", null, CommandType.Text);
             var gebiss = _dp.GetAll<GebissDbModel>("getGebissForPatientIds.sql", new DynamicParameters(new { ids = patients.Select(x => x.UserId).ToList() }), CommandType.Text);
+            if (!gebiss.Any() || !patients.Any()) return null;
+
             var zaehne = _dp.GetAll<TasksInformationDbModel>("getZaehneStateById.sql", new DynamicParameters(new { id = gebiss[0]._11 }), CommandType.Text);
             var dic = patients?.Select(x =>
             {

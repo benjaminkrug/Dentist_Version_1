@@ -1,16 +1,29 @@
 <template>
   <div class="spezial-border">
     <div class="spezial-form-top" v-bind:style="styleTop" >
-      <div class="box-top" @mouseover="fillTop = 'yellow'" @mouseleave="fillTop = 'white'" />
+      <div
+        class="box-top"
+        @mouseover="fillTop = 'yellow'" @mouseleave="fillTop = 'white'"
+        @click="AddBehandlung('box-top')"
+      />
     </div>
     <div class="spezial-form-right" v-bind:style="styleRight" >
-      <div class="box-right" @mouseover="fillRight = 'yellow'" @mouseleave="fillRight = 'white'" />
+      <div
+        class="box-right" @mouseover="fillRight = 'yellow'" @mouseleave="fillRight = 'white'"
+        @click="AddBehandlung('box-right')"
+      />
     </div>
     <div class="spezial-form-left" v-bind:style="styleLeft" >
-      <div class="box-left" @mouseover="fillLeft = 'yellow'" @mouseleave="fillLeft = 'white'" />
+      <div
+        class="box-left" @mouseover="fillLeft = 'yellow'" @mouseleave="fillLeft = 'white'"
+        @click="AddBehandlung('box-left')"
+     />
     </div>
     <div class="spezial-form-bottom" v-bind:style="styleBottom" >
-      <div class="box-bottom" @mouseover="fillBottom = 'yellow'" @mouseleave="fillBottom = 'white'" />
+      <div
+        class="box-bottom" @mouseover="fillBottom = 'yellow'" @mouseleave="fillBottom = 'white'"
+        @click="AddBehandlung('box-bottom')"
+      />
     </div>
     <v-stage :config="configKonva">
       <v-layer>
@@ -21,6 +34,7 @@
     <div class="hover-detection"
       @mouseover="configInnerCircle.fill = 'yellow'"
       @mouseleave="configInnerCircle.fill = 'white'"
+      @click="AddBehandlung('box-mitte')"
     />
   </div>
 </template>
@@ -82,6 +96,11 @@ export default {
         borderBottom: this.bottom + 'px solid ' + this.fillBottom
       }
     },
+  },
+  methods: {
+    AddBehandlung(position){
+      this.$emit('AddBehandlung', position)
+    }
   }
 }
 </script>

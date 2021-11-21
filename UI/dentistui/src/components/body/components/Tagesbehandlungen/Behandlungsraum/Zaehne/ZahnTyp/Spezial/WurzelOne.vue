@@ -1,6 +1,6 @@
 <template>
   <div>
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-mitte')"/>
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
     };
   },
   computed:{
+  },
+  methods: {
   }
 
 }

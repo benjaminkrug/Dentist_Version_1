@@ -4,6 +4,7 @@
       <v-layer
         @mouseover="fill = 'yellow'"
         @mouseleave="fill = 'white'"
+        @click="AddBehandlung()"
       >
         <v-line :config="lineConfig"/>
       </v-layer>
@@ -60,6 +61,11 @@ export default {
         fill: this.fill,
       }
     }
+  },
+  methods: {
+    AddBehandlung(){
+      this.$emit('AddBehandlung')
+    }
   }
 
 }
@@ -76,6 +82,7 @@ export default {
   z-index: 1;
 }
 .spezial-form >*{
+  z-index: 1;
 }
 .top{
   margin-left:2px;

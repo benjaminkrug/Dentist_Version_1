@@ -2,8 +2,8 @@
   <div class="wurzel-two">
     <div />
     <div />
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
-    <spezial-form :isUnterKiefer="isUnterKiefer" />
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-mitte-links')"/>
+    <spezial-form :isUnterKiefer="isUnterKiefer" @AddBehandlung="$emit('AddBehandlung', 'wurzel-mitte-rechts')"/>
   </div>
 </template>
 
