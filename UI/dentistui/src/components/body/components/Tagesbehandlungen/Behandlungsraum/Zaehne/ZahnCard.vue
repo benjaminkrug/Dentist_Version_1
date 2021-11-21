@@ -12,9 +12,9 @@
         </div>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" @click="AddBehandlung('unten-links')"/>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="unten-mitte" >
-          <div class="box" :style="styleUntenMitteOben" @click="AddBehandlung('UntenMitteOben')"/>
-          <div class="box" :style="styleUntenMitteMitte" @click="AddBehandlung('UntenMitteMitte')"/>
-          <div class="box" :style="styleUntenMitteUnten" @click="AddBehandlung('UntenMitteUnten')"/>
+          <div class="box" :style="styleUntenMitteOben" @click="AddBehandlung('unten-mitte-oben')"/>
+          <div class="box" :style="styleUntenMitteMitte" @click="AddBehandlung('unten-mitte-mitte')"/>
+          <div class="box" :style="styleUntenMitteUnten" @click="AddBehandlung('unten-mitte-unten')"/>
         </div>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-rechts" :style="styleUntenRechts" @click="AddBehandlung('unten-rechts')"/>
       </div>
@@ -23,18 +23,18 @@
       <div class="ZahnCardAufbauUnterkiefer">
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" />
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" class="unten-mitte" >
-          <spezial-form-round />
+          <spezial-form-round @AddBehandlung="(value) => AddBehandlung(value)"/>
         </div>
-        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks" />
+        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-links" :style="styleUntenLinks"  @click="AddBehandlung('unten-links')"/>
         <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="unten-mitte">
-          <div class="box" :style="styleUntenMitteOben" />
-          <div class="box" :style="styleUntenMitteMitte" />
-          <div class="box" :style="styleUntenMitteUnten" />
+          <div class="box" :style="styleUntenMitteOben" @click="AddBehandlung('mitte-mitte-oben')" />
+          <div class="box" :style="styleUntenMitteMitte" @click="AddBehandlung('unten-mitte-mitte')"/>
+          <div class="box" :style="styleUntenMitteUnten" @click="AddBehandlung('unten-mitte-unten')"/>
         </div>
-        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-rechts" :style="styleUntenRechts" />
+        <div v-if="type === 'SchneideZahn' || type === 'EckZahn'" class="box unten-rechts" :style="styleUntenRechts" @click="AddBehandlung('unten-rechts')"/>
         <div v-if="type !== 'SchneideZahn' && type !== 'EckZahn'" />
         <div />
-        <div class="box mitte-mitte" :style="styleMitteMitte" />
+        <div class="box mitte-mitte" :style="styleMitteMitte" @click="AddBehandlung('mitte-mitte')" />
         <div />
         <wurzel-selector class="wurzel-selector" :wurzeln="wurzeln" isUnterKiefer @AddBehandlung="(value) => AddBehandlung(value)"/>
       </div>
